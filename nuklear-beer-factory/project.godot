@@ -11,7 +11,13 @@ config_version=4
 [application]
 
 config/name="Nuklear Beer Factory"
+run/main_scene="res://scenes/gameplay.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [physics]
 

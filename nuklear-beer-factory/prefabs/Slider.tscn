@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="Slider" type="VBoxContainer"]
+margin_top = 156.0
+margin_right = 740.0
+margin_bottom = 190.0
+
+[node name="Label" type="Label" parent="."]
+margin_right = 740.0
+margin_bottom = 14.0
+text = "Slider's name"
+
+[node name="HSlider" type="HSlider" parent="."]
+margin_top = 18.0
+margin_right = 740.0
+margin_bottom = 34.0
