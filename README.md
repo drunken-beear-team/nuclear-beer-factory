@@ -1,2 +1,4 @@
-# nuklear-beer-factory
-This is LD49 submission. Theme: "Unsteble"
+# Nuclear Beer Factory
+
+This is LD 49 submission. Theme: "Unstable".
+
