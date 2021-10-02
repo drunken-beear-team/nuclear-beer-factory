@@ -15,3 +15,4 @@ func _on_toggle_cam_view():
 		else:
 			_animation_player.play_backwards("Toggle_Cam")
 			_is_in_basement = false
+
