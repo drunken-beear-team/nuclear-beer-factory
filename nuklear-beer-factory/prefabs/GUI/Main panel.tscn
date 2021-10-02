@@ -5,15 +5,18 @@
 [ext_resource path="res://prefabs/GUI/sliders/Pressure Slider.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefabs/GUI/sliders/Malt slider.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/GUI/sliders/Power Slider.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scripts/CheckboxTest.gd" type="Script" id=6]
+[ext_resource path="res://scripts/GUI.gd" type="Script" id=6]
 
-[node name="GUI" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 5.34534
-margin_top = -1.7818
-margin_right = 5.34534
-margin_bottom = -1.7818
+[node name="Main panel" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,42 +48,40 @@ __meta__ = {
 [node name="Malt Slider" parent="Panel BG/Control Panel" instance=ExtResource( 4 )]
 margin_top = 0.0
 margin_right = 576.0
-margin_bottom = 67.0
+margin_bottom = 69.0
 size_flags_vertical = 3
 
 [node name="Power Slider" parent="Panel BG/Control Panel" instance=ExtResource( 5 )]
-margin_top = 71.0
+margin_top = 73.0
 margin_right = 576.0
-margin_bottom = 138.0
+margin_bottom = 142.0
 size_flags_vertical = 3
 
 [node name="Pressure Slider" parent="Panel BG/Control Panel" instance=ExtResource( 3 )]
-margin_top = 142.0
+margin_top = 146.0
 margin_right = 576.0
-margin_bottom = 209.0
+margin_bottom = 215.0
 size_flags_vertical = 3
 
 [node name="Rad Slider" parent="Panel BG/Control Panel" instance=ExtResource( 2 )]
-margin_top = 213.0
+margin_top = 219.0
 margin_right = 576.0
-margin_bottom = 280.0
+margin_bottom = 288.0
 size_flags_vertical = 3
 
 [node name="Temperture Slider" parent="Panel BG/Control Panel" instance=ExtResource( 1 )]
-margin_top = 284.0
+margin_top = 292.0
 margin_right = 576.0
-margin_bottom = 351.0
+margin_bottom = 361.0
 size_flags_vertical = 3
 
-[node name="CheckBox" type="CheckBox" parent="Panel BG/Control Panel"]
-margin_top = 355.0
+[node name="Button" type="Button" parent="Panel BG/Control Panel"]
+margin_top = 365.0
 margin_right = 576.0
 margin_bottom = 385.0
-rect_min_size = Vector2( 30, 30 )
-script = ExtResource( 6 )
+text = "Go to power room"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_sliders = [ NodePath("../Malt Slider"), NodePath("../Power Slider"), NodePath("../Pressure Slider"), NodePath("../Rad Slider"), NodePath("../Temperture Slider") ]
 
-[connection signal="toggled" from="Panel BG/Control Panel/CheckBox" to="Panel BG/Control Panel/CheckBox" method="_on_CheckBox_toggled"]
+[connection signal="button_up" from="Panel BG/Control Panel/Button" to="." method="_on_toggle_cam_view"]

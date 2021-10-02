@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://anims/Toggle_Cam.tres" type="Animation" id=1]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2( 0, 608 )
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Toggle_Cam = ExtResource( 1 )
