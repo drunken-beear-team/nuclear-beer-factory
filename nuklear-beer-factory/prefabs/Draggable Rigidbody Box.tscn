@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prefabs/Rigidbody Box.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Draggable Rigidbody Box.gd" type="Script" id=2]
+
+[node name="Draggable Rigidbody Box" instance=ExtResource( 1 )]
+input_pickable = true
+script = ExtResource( 2 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_Draggable_Rigidbody_Box_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_Draggable_Rigidbody_Box_mouse_exited"]
