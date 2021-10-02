@@ -1,9 +1,9 @@
 extends Control
 
 
-export(NodePath) var _camera
+export(NodePath) var _camera: NodePath
 
-var _is_in_basement = false
+var _is_in_basement: bool = false
 
 
 func _on_toggle_cam_view():
@@ -15,4 +15,3 @@ func _on_toggle_cam_view():
 		else:
 			_animation_player.play_backwards("Toggle_Cam")
 			_is_in_basement = false
-

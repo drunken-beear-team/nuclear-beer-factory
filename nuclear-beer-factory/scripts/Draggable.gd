@@ -1,13 +1,17 @@
 extends RigidBody2D
 
 
-export(float) var _force = 100
+export(float) var _force: float = 100
+
 var _is_mouse_entered: bool = false
 var _dragging_pos: Vector2 = Vector2.ZERO
 var _is_dragging: bool = false
 
 
-func _input(event):
+var _motion: Vector2 = Vector2.ZERO
+
+
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.is_pressed() && _is_mouse_entered:
 			_is_dragging = true
@@ -15,8 +19,8 @@ func _input(event):
 		else:
 			_is_dragging = false
 	elif event is InputEventMouseMotion && _is_dragging:
-		var motion = event.relative * get_physics_process_delta_time() * _force
-		apply_central_impulse(motion)
+		_motion = event.relative * get_physics_process_delta_time() * _force
+		apply_central_impulse(_motion)
 
 
 func _on_Draggable_Rigidbody_Box_mouse_entered():
