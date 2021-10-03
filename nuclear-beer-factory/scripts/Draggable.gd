@@ -8,8 +8,6 @@ var _dragging_pos: Vector2 = Vector2.ZERO
 var _is_dragging: bool = false
 
 
-var _motion: Vector2 = Vector2.ZERO
-
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -20,13 +18,12 @@ func _input(event: InputEvent) -> void:
 		else:
 			_is_dragging = false
 	elif event is InputEventMouseMotion && _is_dragging:
-		_motion = event.relative * get_physics_process_delta_time() * _force
-		apply_central_impulse(_motion)
+		var motion = event.relative * get_physics_process_delta_time() * _force
+		apply_central_impulse(motion)
 
 
 func _on_Draggable_Rigidbody_Box_mouse_entered():
 	_is_mouse_entered = true
-	print(1)
 
 
 func _on_Draggable_Rigidbody_Box_mouse_exited():

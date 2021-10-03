@@ -8,14 +8,6 @@ var _dragging_pos: Vector2 = Vector2.ZERO
 var _is_dragging: bool = false
 
 
-
-func _is_mouse_inside() -> bool:
-	var collision_shape = $CollisionShape2D
-#	collision_shape.
-	
-	return false
-
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT && event.is_pressed() && _is_mouse_entered:

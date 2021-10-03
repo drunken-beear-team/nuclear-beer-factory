@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://prefabs/Fuel tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/Environment/Fuel tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/block sqrt.png" type="Texture" id=2]
-[ext_resource path="res://prefabs/CameraController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scripts/Player.gd" type="Script" id=4]
-[ext_resource path="res://prefabs/SpaceRocket.tscn" type="PackedScene" id=5]
-[ext_resource path="res://prefabs/Box.tscn" type="PackedScene" id=7]
-[ext_resource path="res://prefabs/Conveyor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://prefabs/Controllers/CameraController.tscn" type="PackedScene" id=3]
+[ext_resource path="res://prefabs/Controllers/GameController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prefabs/Environment/SpaceRocket.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prefabs/Environment/Draggable/Box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://prefabs/Environment/Conveyor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://prefabs/GUI/GUI.tscn" type="PackedScene" id=9]
-[ext_resource path="res://prefabs/Floor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://prefabs/Environment/Floor.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 320, 16 )
@@ -19,6 +19,10 @@ atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 640, 32 )
 
 [node name="Gameplay" type="Node2D"]
+
+[node name="GameController" parent="." instance=ExtResource( 4 )]
+
+[node name="CameraController" parent="." instance=ExtResource( 3 )]
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -52,13 +56,6 @@ shape = SubResource( 1 )
 position = Vector2( -1.3385, -0.23925 )
 scale = Vector2( 0.997323, 1.01495 )
 texture = SubResource( 2 )
-
-[node name="Player" type="Node2D" parent="."]
-script = ExtResource( 4 )
-_bottle_prefab = ExtResource( 7 )
-_fuel_prefab = ExtResource( 7 )
-
-[node name="CameraController" parent="." instance=ExtResource( 3 )]
 
 [node name="GUI" parent="." instance=ExtResource( 9 )]
 
