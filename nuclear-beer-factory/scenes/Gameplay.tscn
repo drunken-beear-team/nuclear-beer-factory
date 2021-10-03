@@ -5,15 +5,15 @@
 [ext_resource path="res://scripts/Gameplay.gd" type="Script" id=3]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/SpaceRocket.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Toggle_Cam.tres" type="Animation" id=6]
 [ext_resource path="res://prefabs/draggable/Bottle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefabs/Conveyor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://prefabs/GUI/GUI.tscn" type="PackedScene" id=9]
 [ext_resource path="res://prefabs/draggable/Fuel.tscn" type="PackedScene" id=15]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 320, 16 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 flags = 2
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 640, 32 )
@@ -26,20 +26,17 @@ script = ExtResource( 4 )
 _bottle_prefab = ExtResource( 7 )
 _fuel_prefab = ExtResource( 15 )
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 0, 608 )
-current = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Camera"]
-anims/Toggle_Cam = ExtResource( 6 )
-
 [node name="Environment" type="Node2D" parent="."]
-
-[node name="Conveyor" parent="Environment" instance=ExtResource( 8 )]
-position = Vector2( 365.542, 184.864 )
-_speed = 80.0
+visible = false
 
 [node name="Fuel tank" parent="Environment" instance=ExtResource( 1 )]
+
+[node name="SpaceRocket" parent="Environment" instance=ExtResource( 5 )]
+position = Vector2( 649.406, 139.318 )
+
+[node name="Conveyor" parent="Environment" instance=ExtResource( 8 )]
+position = Vector2( 305.422, 239.547 )
+_speed = 80.0
 
 [node name="Fuels" type="Node2D" parent="Environment"]
 
@@ -50,7 +47,7 @@ position = Vector2( -200, 752 )
 position = Vector2( -232, 544 )
 
 [node name="Fuel3" parent="Environment/Fuels" instance=ExtResource( 15 )]
-position = Vector2( -72, 640 )
+position = Vector2( -70.7401, 640 )
 
 [node name="Fuel4" parent="Environment/Fuels" instance=ExtResource( 15 )]
 position = Vector2( -264, 672 )
@@ -65,13 +62,13 @@ position = Vector2( -160, 656 )
 position = Vector2( -14.1422, 12.728 )
 
 [node name="Bottle" parent="Environment/Bottles" instance=ExtResource( 7 )]
-position = Vector2( 8, 120 )
+position = Vector2( 124.412, 59.7871 )
 
 [node name="Bottle2" parent="Environment/Bottles" instance=ExtResource( 7 )]
-position = Vector2( 56, 120 )
+position = Vector2( 140.298, 122.007 )
 
 [node name="Bottle3" parent="Environment/Bottles" instance=ExtResource( 7 )]
-position = Vector2( -56, 120 )
+position = Vector2( 138.688, -20.4968 )
 
 [node name="Bottle4" parent="Environment/Bottles" instance=ExtResource( 7 )]
 position = Vector2( -315.031, 184.072 )
@@ -82,41 +79,50 @@ position = Vector2( -267.031, 184.072 )
 [node name="Bottle6" parent="Environment/Bottles" instance=ExtResource( 7 )]
 position = Vector2( -379.031, 184.072 )
 
-[node name="SpaceRocket" parent="Environment" instance=ExtResource( 5 )]
-position = Vector2( 649.406, 139.318 )
-
 [node name="Floor" type="StaticBody2D" parent="Environment"]
 position = Vector2( -176, 256 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor"]
 position = Vector2( -1.68176, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Floor"]
 position = Vector2( -1.68176, 0 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Environment/Floor"]
-texture = SubResource( 4 )
+texture = SubResource( 2 )
 
 [node name="Floor2" type="StaticBody2D" parent="Environment"]
 position = Vector2( 0, 832 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor2"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Environment/Floor2"]
 position = Vector2( -1.3385, -0.23925 )
 scale = Vector2( 0.997323, 1.01495 )
-texture = SubResource( 4 )
+texture = SubResource( 2 )
 
 [node name="Floor3" type="StaticBody2D" parent="Environment"]
 position = Vector2( 353.177, 310.644 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor3"]
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Environment/Floor3"]
 position = Vector2( -1.3385, -0.23925 )
 scale = Vector2( 0.997323, 1.01495 )
-texture = SubResource( 4 )
+texture = SubResource( 2 )
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 47.349, 704.453 )
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GUI" parent="CanvasLayer" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0

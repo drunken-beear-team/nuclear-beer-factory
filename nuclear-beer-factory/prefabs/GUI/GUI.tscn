@@ -1,121 +1,87 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scripts/GUI.gd" type="Script" id=1]
-[ext_resource path="res://prefabs/GUI/sliders/Pressure Slider.tscn" type="PackedScene" id=2]
-[ext_resource path="res://prefabs/GUI/sliders/Malt slider.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prefabs/GUI/sliders/Rad Slider.tscn" type="PackedScene" id=4]
-[ext_resource path="res://prefabs/GUI/sliders/Temperture Slider.tscn" type="PackedScene" id=5]
-[ext_resource path="res://prefabs/GUI/sliders/Power Slider.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/sprites/map.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/map-btns.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 174, 88, 281, 167 )
+
+[sub_resource type="StreamTexture" id=5]
+load_path = "res://.import/map-btns.png-f3a7d6423759c0d2f16a388d328eda9a.stex"
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = SubResource( 5 )
+region = Rect2( 285, 157, 29, 28 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 8 )
+region = Rect2( 286, 207, 29, 28 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 8 )
+region = Rect2( 402, 153, 29, 28 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 64, 95, 56, 39 )
 
 [node name="GUI" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Control Panel" type="Control" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+margin_right = 640.0
+margin_bottom = 320.0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_camera = NodePath("../../Camera")
 
-[node name="Panel BG" type="Panel" parent="Control Panel"]
+[node name="Map" type="TextureRect" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -160.0
-margin_top = -142.0
-margin_right = 160.0
-margin_bottom = 142.0
+margin_left = -140.5
+margin_top = -83.5
+margin_right = 140.5
+margin_bottom = 83.5
+texture = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control Panel" type="VBoxContainer" parent="Control Panel/Panel BG"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-alignment = 1
+[node name="A Button" type="TextureButton" parent="Map"]
+margin_left = 111.247
+margin_top = 66.1271
+margin_right = 140.247
+margin_bottom = 94.1271
+texture_normal = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Malt Slider" type="VBoxContainer" parent="Control Panel/Panel BG/Control Panel" instance=ExtResource( 3 )]
-margin_right = 320.0
-margin_bottom = 48.0
-size_flags_vertical = 3
+[node name="B Button" type="TextureButton" parent="Map"]
+margin_left = 111.851
+margin_top = 118.203
+margin_right = 140.851
+margin_bottom = 146.203
+texture_normal = SubResource( 6 )
+
+[node name="C Button" type="TextureButton" parent="Map"]
+margin_left = 231.341
+margin_top = 62.1467
+margin_right = 260.341
+margin_bottom = 90.1467
+texture_normal = SubResource( 7 )
+
+[node name="Map Button" type="TextureButton" parent="."]
+margin_right = 56.0
+margin_bottom = 39.0
+texture_normal = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Power Slider" type="VBoxContainer" parent="Control Panel/Panel BG/Control Panel" instance=ExtResource( 6 )]
-margin_top = 52.0
-margin_right = 320.0
-margin_bottom = 101.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Pressure Slider" type="VBoxContainer" parent="Control Panel/Panel BG/Control Panel" instance=ExtResource( 2 )]
-margin_top = 105.0
-margin_right = 320.0
-margin_bottom = 154.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Rad Slider" type="VBoxContainer" parent="Control Panel/Panel BG/Control Panel" instance=ExtResource( 4 )]
-margin_top = 158.0
-margin_right = 320.0
-margin_bottom = 207.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Temperture Slider" type="VBoxContainer" parent="Control Panel/Panel BG/Control Panel" instance=ExtResource( 5 )]
-margin_top = 211.0
-margin_right = 320.0
-margin_bottom = 259.0
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Enter to Basement Button" type="Button" parent="Control Panel/Panel BG/Control Panel"]
-margin_top = 263.0
-margin_right = 320.0
-margin_bottom = 283.0
-text = "Go to power room"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Basement Panel" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="Exit Button" type="Button" parent="Basement Panel"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -156.0
-margin_top = 324.0
-margin_right = 116.0
-margin_bottom = 364.0
-text = "To main panel"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[connection signal="button_up" from="Control Panel/Panel BG/Control Panel/Enter to Basement Button" to="Control Panel" method="_on_toggle_cam_view"]
-[connection signal="button_up" from="Basement Panel/Exit Button" to="Control Panel" method="_on_toggle_cam_view"]
+[connection signal="button_down" from="Map/A Button" to="." method="_on_A_Button_button_down"]
+[connection signal="button_down" from="Map/B Button" to="." method="_on_B_Button_button_down"]
+[connection signal="button_down" from="Map/C Button" to="." method="_on_C_Button_button_down"]
+[connection signal="button_down" from="Map Button" to="." method="_on_Map_Button_button_down"]

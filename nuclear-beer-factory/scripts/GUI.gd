@@ -1,17 +1,36 @@
 extends Control
 
+enum Scene { 
+	SCENE_A, 
+	SCENE_B, 
+	SCENE_C 
+}
 
-export(NodePath) var _camera: NodePath
-
-var _is_in_basement: bool = false
+signal scene_switched(scene) 
 
 
-func _on_toggle_cam_view():
-	if _camera:
-		var _animation_player: AnimationPlayer = get_node(_camera).get_child(0)
-		if not _is_in_basement:
-			_animation_player.play("Toggle_Cam")
-			_is_in_basement = true
-		else:
-			_animation_player.play_backwards("Toggle_Cam")
-			_is_in_basement = false
+onready var map: TextureRect = get_node("Map")
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("toggle_map_visible"):
+		toggle_map_visible()
+
+
+func toggle_map_visible() -> void:
+	map.visible = !map.visible
+
+
+func _on_Map_Button_button_down():
+	toggle_map_visible()
+
+
+func _on_A_Button_button_down():
+	emit_signal("scene_switched", Scene.SCENE_A)
+
+
+func _on_B_Button_button_down():
+	emit_signal("scene_switched", Scene.SCENE_B)
+
+func _on_C_Button_button_down():
+	emit_signal("scene_switched", Scene.SCENE_C)
