@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://prefabs/draggable/Draggable.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/fuel.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/fuel.png" type="Texture" id=2]
 
 
 [node name="Fuel" instance=ExtResource( 1 )]

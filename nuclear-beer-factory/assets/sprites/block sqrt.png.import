@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/block sqrt.png-ce073d9ef6e2784a526faf18029c7ce5.stex"
+path="res://.import/block sqrt.png-4199beb1976b83f57a6244964c6dbb83.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/block sqrt.png"
-dest_files=[ "res://.import/block sqrt.png-ce073d9ef6e2784a526faf18029c7ce5.stex" ]
+source_file="res://assets/sprites/block sqrt.png"
+dest_files=[ "res://.import/block sqrt.png-4199beb1976b83f57a6244964c6dbb83.stex" ]
 
 [params]
 

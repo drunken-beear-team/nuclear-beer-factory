@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spc-rocket placeholder.png-2d0f8e07dfdcb50b32a9dd129c906cde.stex"
+path="res://.import/spc-rocket placeholder.png-9ae0d3240d046d300f761877b2c4c680.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spc-rocket placeholder.png"
-dest_files=[ "res://.import/spc-rocket placeholder.png-2d0f8e07dfdcb50b32a9dd129c906cde.stex" ]
+source_file="res://assets/sprites/spc-rocket placeholder.png"
+dest_files=[ "res://.import/spc-rocket placeholder.png-9ae0d3240d046d300f761877b2c4c680.stex" ]
 
 [params]
 

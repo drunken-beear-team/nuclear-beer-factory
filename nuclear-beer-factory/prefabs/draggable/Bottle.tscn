@@ -1,25 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://prefabs/draggable/Draggable.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/bottle.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2.68881, 13.9348 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 5.1082, 8.24927 )
+extents = Vector2( 16, 16 )
 
 [node name="Bottle" instance=ExtResource( 1 )]
-mass = 8.19
-
-[node name="Sprite" parent="." index="0"]
-position = Vector2( 0, -9.49829 )
-texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( -1.33484, -7.24575 )
 shape = SubResource( 1 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
-position = Vector2( -1.75198, -2.66968 )
-shape = SubResource( 2 )

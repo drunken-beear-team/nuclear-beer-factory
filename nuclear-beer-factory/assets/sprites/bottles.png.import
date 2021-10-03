@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/block sqr 2.png-2e3a21e3c46510bd0faea56fde2d2a96.stex"
+path="res://.import/bottles.png-861c92bcaac5d76e1c2fcc6f6a73b895.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/block sqr 2.png"
-dest_files=[ "res://.import/block sqr 2.png-2e3a21e3c46510bd0faea56fde2d2a96.stex" ]
+source_file="res://assets/sprites/bottles.png"
+dest_files=[ "res://.import/bottles.png-861c92bcaac5d76e1c2fcc6f6a73b895.stex" ]
 
 [params]
 
