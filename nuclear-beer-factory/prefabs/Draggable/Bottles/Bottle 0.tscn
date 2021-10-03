@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://prefabs/Environment/Draggable/Bottles/Base Bottle.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/Draggable/Bottles/Base Bottle.tscn" type="PackedScene" id=1]
 
 [sub_resource type="StreamTexture" id=1]
 load_path = "res://.import/bottles.png-861c92bcaac5d76e1c2fcc6f6a73b895.stex"

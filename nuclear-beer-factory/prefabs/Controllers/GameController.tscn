@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://prefabs/Environment/Draggable/Bottles/Bottle 0.tscn" type="PackedScene" id=1]
-[ext_resource path="res://prefabs/Environment/Draggable/Box.tscn" type="PackedScene" id=2]
+[ext_resource path="res://prefabs/Draggable/Bottles/Bottle 0.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/Draggable/Draggable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scripts/GameController.gd" type="Script" id=3]
 
 [node name="GameController" type="Node2D"]
