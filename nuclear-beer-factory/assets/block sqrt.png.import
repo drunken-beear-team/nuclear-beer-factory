@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/block sqr 2.png-0d79f1495db5dcd503d71ba20750636c.stex"
+path="res://.import/block sqrt.png-ce073d9ef6e2784a526faf18029c7ce5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/block sqr 2.png"
-dest_files=[ "res://.import/block sqr 2.png-0d79f1495db5dcd503d71ba20750636c.stex" ]
+source_file="res://assets/block sqrt.png"
+dest_files=[ "res://.import/block sqrt.png-ce073d9ef6e2784a526faf18029c7ce5.stex" ]
 
 [params]
 
@@ -19,8 +19,8 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
-flags/filter=true
+flags/repeat=1
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

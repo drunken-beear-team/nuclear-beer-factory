@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/block sqrt.png-437d1e0c2955da08dca6da71dc1811ae.stex"
+path="res://.import/fuel.png-20f179ca4cf454308f4ac5cdf6dde6fa.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/block sqrt.png"
-dest_files=[ "res://.import/block sqrt.png-437d1e0c2955da08dca6da71dc1811ae.stex" ]
+source_file="res://assets/fuel.png"
+dest_files=[ "res://.import/fuel.png-20f179ca4cf454308f4ac5cdf6dde6fa.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
