@@ -4,30 +4,30 @@
 [ext_resource path="res://assets/sprites/map.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/map-btns.png" type="Texture" id=8]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 7 )
 region = Rect2( 174, 88, 281, 167 )
 
-[sub_resource type="StreamTexture" id=5]
+[sub_resource type="StreamTexture" id=2]
 load_path = "res://.import/map-btns.png-f3a7d6423759c0d2f16a388d328eda9a.stex"
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = SubResource( 5 )
+[sub_resource type="AtlasTexture" id=3]
+atlas = SubResource( 2 )
 region = Rect2( 285, 157, 29, 28 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 8 )
 region = Rect2( 286, 207, 29, 28 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 8 )
 region = Rect2( 402, 153, 29, 28 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 8 )
 region = Rect2( 424, 103, 16, 12 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 7 )
 region = Rect2( 64, 95, 56, 39 )
 
@@ -49,7 +49,7 @@ margin_left = -140.5
 margin_top = -83.5
 margin_right = 140.5
 margin_bottom = 83.5
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -59,7 +59,7 @@ margin_left = 111.247
 margin_top = 66.1271
 margin_right = 140.247
 margin_bottom = 94.1271
-texture_normal = SubResource( 8 )
+texture_normal = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,26 +69,26 @@ margin_left = 111.851
 margin_top = 118.203
 margin_right = 140.851
 margin_bottom = 146.203
-texture_normal = SubResource( 6 )
+texture_normal = SubResource( 4 )
 
 [node name="C Button" type="TextureButton" parent="Map"]
 margin_left = 231.341
 margin_top = 62.1467
 margin_right = 260.341
 margin_bottom = 90.1467
-texture_normal = SubResource( 7 )
+texture_normal = SubResource( 5 )
 
 [node name="Map Close Button" type="TextureButton" parent="Map"]
 margin_left = 250.069
 margin_top = 15.4679
 margin_right = 266.069
 margin_bottom = 27.4679
-texture_normal = SubResource( 9 )
+texture_normal = SubResource( 6 )
 
 [node name="Map Button" type="TextureButton" parent="."]
 margin_right = 56.0
 margin_bottom = 39.0
-texture_normal = SubResource( 3 )
+texture_normal = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

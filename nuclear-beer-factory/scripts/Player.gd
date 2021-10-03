@@ -29,3 +29,5 @@ func _handle_player_input() -> void:
 		_spawn_env_item(_bottle_prefab, _bottles)
 	if Input.is_action_just_pressed("spawn_fuel"):
 		_spawn_env_item(_fuel_prefab, _fuels)
+	if Input.is_action_just_pressed("reload_scene"):
+		get_tree().reload_current_scene()

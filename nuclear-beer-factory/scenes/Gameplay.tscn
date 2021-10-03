@@ -14,10 +14,10 @@
 [ext_resource path="res://scripts/CameraController.gd" type="Script" id=12]
 [ext_resource path="res://prefabs/Floor.tscn" type="PackedScene" id=15]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 320, 16 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=2]
 flags = 2
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 640, 32 )
@@ -64,12 +64,12 @@ position = Vector2( -56.5927, 256 )
 position = Vector2( 0, 832 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor2"]
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Environment/Floor2"]
 position = Vector2( -1.3385, -0.23925 )
 scale = Vector2( 0.997323, 1.01495 )
-texture = SubResource( 7 )
+texture = SubResource( 2 )
 
 [node name="Box" parent="Environment" instance=ExtResource( 7 )]
 collision_layer = 3
