@@ -1,12 +1,7 @@
 extends Control
 
-enum Scene { 
-	SCENE_A, 
-	SCENE_B, 
-	SCENE_C 
-}
 
-signal scene_switched(scene) 
+signal room_switched(room_type) 
 
 
 onready var map: TextureRect = get_node("Map")
@@ -26,11 +21,11 @@ func _on_Map_Button_button_down():
 
 
 func _on_A_Button_button_down():
-	emit_signal("scene_switched", Scene.SCENE_A)
+	emit_signal("room_switched", Room.RoomType.ROOM_A)
 
 
 func _on_B_Button_button_down():
-	emit_signal("scene_switched", Scene.SCENE_B)
+	emit_signal("room_switched", Room.RoomType.ROOM_B)
 
 func _on_C_Button_button_down():
-	emit_signal("scene_switched", Scene.SCENE_C)
+	emit_signal("room_switched", Room.RoomType.ROOM_C)
