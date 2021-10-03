@@ -11,7 +11,6 @@ atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 640, 32 )
 
 [node name="Floor" type="StaticBody2D"]
-position = Vector2( -176, 256 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.68176, 0 )

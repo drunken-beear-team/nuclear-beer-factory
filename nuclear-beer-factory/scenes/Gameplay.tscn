@@ -1,17 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://prefabs/Fuel tank.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/block sqrt.png" type="Texture" id=2]
-[ext_resource path="res://scripts/Gameplay.gd" type="Script" id=3]
+[ext_resource path="res://prefabs/CameraController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scripts/Player.gd" type="Script" id=4]
 [ext_resource path="res://prefabs/SpaceRocket.tscn" type="PackedScene" id=5]
-[ext_resource path="res://prefabs/Cameras/Camera_A.tscn" type="PackedScene" id=6]
 [ext_resource path="res://prefabs/Box.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prefabs/Conveyor.tscn" type="PackedScene" id=8]
 [ext_resource path="res://prefabs/GUI/GUI.tscn" type="PackedScene" id=9]
-[ext_resource path="res://prefabs/Cameras/Camera_C.tscn" type="PackedScene" id=10]
-[ext_resource path="res://prefabs/Cameras/Camera_B.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scripts/CameraController.gd" type="Script" id=12]
 [ext_resource path="res://prefabs/Floor.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -23,37 +19,23 @@ atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 640, 32 )
 
 [node name="Gameplay" type="Node2D"]
-script = ExtResource( 3 )
-
-[node name="CameraController" type="Node2D" parent="."]
-script = ExtResource( 12 )
-
-[node name="Camera_A" parent="CameraController" instance=ExtResource( 6 )]
-position = Vector2( -42.3785, 133.492 )
-
-[node name="Camera_B" parent="CameraController" instance=ExtResource( 11 )]
-position = Vector2( 6.35681, 658.986 )
-
-[node name="Camera_C" parent="CameraController" instance=ExtResource( 10 )]
-position = Vector2( 735.267, 139.849 )
-
-[node name="Player" type="Node2D" parent="."]
-script = ExtResource( 4 )
-_bottle_prefab = ExtResource( 7 )
-_fuel_prefab = ExtResource( 7 )
 
 [node name="Environment" type="Node2D" parent="."]
 
 [node name="FuelTank" parent="Environment" instance=ExtResource( 1 )]
+position = Vector2( 224.86, 737.291 )
 
 [node name="SpaceRocket" parent="Environment" instance=ExtResource( 5 )]
 position = Vector2( 1033.84, 151.332 )
 
 [node name="Conveyor" parent="Environment" instance=ExtResource( 8 )]
-position = Vector2( 710.942, 247.871 )
+position = Vector2( 693.733, 254.514 )
 _speed = 80.0
 
 [node name="Fuels" type="Node2D" parent="Environment"]
+
+[node name="Box" parent="Environment/Fuels" instance=ExtResource( 7 )]
+position = Vector2( 92.4986, 728.216 )
 
 [node name="Bottles" type="Node2D" parent="Environment"]
 
@@ -71,15 +53,13 @@ position = Vector2( -1.3385, -0.23925 )
 scale = Vector2( 0.997323, 1.01495 )
 texture = SubResource( 2 )
 
-[node name="Box" parent="Environment" instance=ExtResource( 7 )]
-collision_layer = 3
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource( 4 )
+_bottle_prefab = ExtResource( 7 )
+_fuel_prefab = ExtResource( 7 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CameraController" parent="." instance=ExtResource( 3 )]
 
-[node name="GUI" parent="CanvasLayer" instance=ExtResource( 9 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+[node name="GUI" parent="." instance=ExtResource( 9 )]
 
-[connection signal="room_switched" from="CanvasLayer/GUI" to="CameraController" method="_on_GUI_room_switched"]
+[connection signal="room_switched" from="GUI" to="CameraController" method="_on_GUI_room_switched"]

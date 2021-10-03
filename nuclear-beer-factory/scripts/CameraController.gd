@@ -12,7 +12,7 @@ var _cur_cam_id: int
 func _ready() -> void:
 	_cur_cam = get_child(_starting_scene_idx)
 	_cur_cam.current = true
-	
+
 
 func _switch_room(room_type: int) -> void:
 	if _cur_cam_id == room_type:

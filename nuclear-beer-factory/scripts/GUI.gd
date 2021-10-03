@@ -1,10 +1,16 @@
-extends Control
+extends CanvasLayer
 
 
 signal room_switched(room_type) 
 
 
-onready var map: TextureRect = get_node("Map")
+onready var map: Control = get_node("Map")
+onready var map_btn: TextureButton = get_node("Map Button")
+
+
+func _ready() -> void:
+	map.visible = false
+	map_btn.visible = true
 
 
 func _process(delta: float) -> void:
@@ -14,6 +20,7 @@ func _process(delta: float) -> void:
 
 func toggle_map_visible() -> void:
 	map.visible = !map.visible
+	map_btn.visible = !map_btn.visible
 
 
 func _on_Map_Close_Button_button_down():

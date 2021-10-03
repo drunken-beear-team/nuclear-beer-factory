@@ -8,13 +8,17 @@ var _dragging_pos: Vector2 = Vector2.ZERO
 var _is_dragging: bool = false
 
 
-func _on_sprite_input_event(viewport, event, shape_idx):
-	print(1)
+
+func _is_mouse_inside() -> bool:
+	var collision_shape = $CollisionShape2D
+#	collision_shape.
 	
+	return false
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT && event.is_pressed():
+		if event.button_index == BUTTON_LEFT && event.is_pressed() && _is_mouse_entered:
 			_is_dragging = true
 			_dragging_pos = event.position
 		else:
@@ -23,5 +27,9 @@ func _input(event: InputEvent) -> void:
 		var motion = event.relative * get_physics_process_delta_time() * _force
 		apply_central_impulse(motion)
 
+
 func _on_Box_mouse_entered():
-	print(2)
+	_is_mouse_entered = true
+
+func _on_Box_mouse_exited():
+	_is_mouse_entered = false
