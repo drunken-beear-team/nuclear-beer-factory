@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/GUI.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/map.png" type="Texture" id=7]
@@ -22,6 +22,10 @@ region = Rect2( 286, 207, 29, 28 )
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 8 )
 region = Rect2( 402, 153, 29, 28 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 8 )
+region = Rect2( 424, 103, 16, 12 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 7 )
@@ -74,6 +78,13 @@ margin_right = 260.341
 margin_bottom = 90.1467
 texture_normal = SubResource( 7 )
 
+[node name="Map Close Button" type="TextureButton" parent="Map"]
+margin_left = 250.069
+margin_top = 15.4679
+margin_right = 266.069
+margin_bottom = 27.4679
+texture_normal = SubResource( 9 )
+
 [node name="Map Button" type="TextureButton" parent="."]
 margin_right = 56.0
 margin_bottom = 39.0
@@ -85,4 +96,5 @@ __meta__ = {
 [connection signal="button_down" from="Map/A Button" to="." method="_on_A_Button_button_down"]
 [connection signal="button_down" from="Map/B Button" to="." method="_on_B_Button_button_down"]
 [connection signal="button_down" from="Map/C Button" to="." method="_on_C_Button_button_down"]
+[connection signal="button_down" from="Map/Map Close Button" to="." method="_on_Map_Close_Button_button_down"]
 [connection signal="button_down" from="Map Button" to="." method="_on_Map_Button_button_down"]

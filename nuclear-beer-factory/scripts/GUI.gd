@@ -16,6 +16,10 @@ func toggle_map_visible() -> void:
 	map.visible = !map.visible
 
 
+func _on_Map_Close_Button_button_down():
+	toggle_map_visible()
+
+
 func _on_Map_Button_button_down():
 	toggle_map_visible()
 
@@ -29,3 +33,4 @@ func _on_B_Button_button_down():
 
 func _on_C_Button_button_down():
 	emit_signal("room_switched", Room.RoomType.ROOM_C)
+

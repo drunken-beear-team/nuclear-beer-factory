@@ -15,7 +15,7 @@ func _spawn_env_item(pkd_scene: PackedScene, parent: Node) -> void:
 	var inst: Node2D = pkd_scene.instance()
 	var viewport: Viewport = get_viewport()
 	inst.global_position = get_global_mouse_position()
-	parent.add_child(inst)	
+	parent.add_child(inst)
 
 
 func _process(delta: float) -> void:
