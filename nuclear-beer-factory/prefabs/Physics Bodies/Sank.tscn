@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://prefabs/Physics Bodies/Eatable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/sprites/bag.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 43, 13, 39, 26 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[node name="Sank" instance=ExtResource( 1 )]
+type = 2
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="3"]
+polygon = PoolVector2Array( -9.54428, -4.92109, -13.3863, 0.145899, -13.8317, 2.15042, -16.5601, 2.2061, -18.676, 3.65381, -19.5112, 5.71402, -15.5022, 11.8946, 15.9577, 12.1174, 19.2429, 8.94353, 19.2986, 2.2061, 17.4611, 0.368624, 17.4611, -1.30181, 14.2316, -4.587, 11.9487, -6.25744, 11.6146, -7.92787, 13.6191, -8.37332, 15.8463, -10.2665, 16.1804, -11.7142, 11.7816, -13.3289, 2.26014, -13.2176, 0.534018, -11.8812, 0.812424, -10.0994, 1.31355, -9.0415, 3.09535, -8.65173, 2.26014, -7.37106, -0.189837, -6.25744, -6.59317, -5.86767 )

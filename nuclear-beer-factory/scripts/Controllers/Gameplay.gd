@@ -35,3 +35,10 @@ func _handle_player_input() -> void:
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("toggle_tab_menu_visible"):
 		$GUIController.toggle_tab_menu_visible()
+
+
+func lose() -> void:
+	if Values.GAME_MODE == "GOD":
+		return
+	else:
+		get_tree().quit(1)

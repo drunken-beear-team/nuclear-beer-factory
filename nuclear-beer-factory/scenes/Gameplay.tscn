@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-fire.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/environment/rooms/basement-bg.png" type="Texture" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-fg.png" type="Texture" id=8]
 [ext_resource path="res://prefabs/GUI/StatCount.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-bg.png" type="Texture" id=10]
-[ext_resource path="res://prefabs/Physics Bodies/Draggable.tscn" type="PackedScene" id=11]
+[ext_resource path="res://prefabs/Physics Bodies/Fuel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://prefabs/Cameras/Camera_A.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/sprites/environment/silo/silo-eater.png" type="Texture" id=13]
 [ext_resource path="res://scripts/Controllers/Gameplay.gd" type="Script" id=14]
@@ -24,7 +24,19 @@
 [ext_resource path="res://assets/sprites/gui/menu-bg.png" type="Texture" id=22]
 [ext_resource path="res://assets/sprites/environment/space-rocket.png" type="Texture" id=23]
 [ext_resource path="res://scripts/Objects/Eater.gd" type="Script" id=24]
-[ext_resource path="res://prefabs/Physics Bodies/Eatable.tscn" type="PackedScene" id=25]
+[ext_resource path="res://prefabs/Physics Bodies/Sank.tscn" type="PackedScene" id=25]
+[ext_resource path="res://scripts/Silo.gd" type="Script" id=26]
+[ext_resource path="res://assets/sprites/gui/hud-glass-effect.png" type="Texture" id=27]
+[ext_resource path="res://assets/sprites/gui/hud-arrow.png" type="Texture" id=28]
+[ext_resource path="res://scripts/Pipe-Arrow.gd" type="Script" id=29]
+[ext_resource path="res://prefabs/Physics Bodies/Beer/Perfect Beer.tscn" type="PackedScene" id=30]
+[ext_resource path="res://prefabs/Physics Bodies/Beer/Bad Beer.tscn" type="PackedScene" id=31]
+[ext_resource path="res://prefabs/Physics Bodies/Beer/Poor Beer.tscn" type="PackedScene" id=32]
+[ext_resource path="res://prefabs/Physics Bodies/Beer/Normal Beer .tscn" type="PackedScene" id=33]
+[ext_resource path="res://prefabs/Physics Bodies/Beer/Good Beer.tscn" type="PackedScene" id=34]
+[ext_resource path="res://assets/sprites/conveyor.png" type="Texture" id=35]
+[ext_resource path="res://scripts/Unused/Conveyor.gd" type="Script" id=36]
+[ext_resource path="res://scripts/SpaceRocket.gd" type="Script" id=37]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 23 )
@@ -43,6 +55,7 @@ animations = [ {
 } ]
 
 [sub_resource type="Animation" id=4]
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
@@ -50,10 +63,22 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 2, 3 ),
+"transitions": PoolRealArray( 2.46229, 3.86374, 1.6245, 3.36359 ),
 "update": 0,
-"values": [ Vector2( 862.699, 0 ), Vector2( 862.699, -393.778 ) ]
+"values": [ Vector2( 862.699, 0 ), Vector2( 862.699, -393.778 ), Vector2( 862.699, -393.778 ), Vector2( 862.699, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 2.7, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1, 0 ]
 }
 
 [sub_resource type="AtlasTexture" id=5]
@@ -95,41 +120,84 @@ extents = Vector2( 60.9629, 17.1825 )
 extents = Vector2( 16.2016, 15.7127 )
 
 [sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 35 )
+region = Rect2( 0, 0, 213, 78 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 35 )
+region = Rect2( 213, 0, 213, 78 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 35 )
+region = Rect2( 426, 0, 213, 78 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 35 )
+region = Rect2( 639, 0, 213, 78 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 35 )
+region = Rect2( 852, 0, 213, 78 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 35 )
+region = Rect2( 1065, 0, 213, 78 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 35 )
+region = Rect2( 1278, 0, 213, 78 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 35 )
+region = Rect2( 1491, 0, 213, 78 )
+
+[sub_resource type="SpriteFrames" id=22]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 83.9171, 9.24887 )
+
+[sub_resource type="AtlasTexture" id=24]
 atlas = ExtResource( 13 )
 region = Rect2( 341, 176, 77, 79 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 20 )
 region = Rect2( 174, 88, 281, 167 )
 
-[sub_resource type="StreamTexture" id=16]
+[sub_resource type="StreamTexture" id=26]
 load_path = "res://.import/map-btns.png-f3a7d6423759c0d2f16a388d328eda9a.stex"
 
-[sub_resource type="AtlasTexture" id=17]
-atlas = SubResource( 16 )
+[sub_resource type="AtlasTexture" id=27]
+atlas = SubResource( 26 )
 region = Rect2( 285, 157, 29, 28 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 17 )
 region = Rect2( 286, 207, 29, 28 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=29]
 atlas = ExtResource( 17 )
 region = Rect2( 402, 153, 29, 28 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 17 )
 region = Rect2( 424, 103, 16, 12 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=31]
 atlas = ExtResource( 21 )
 region = Rect2( 51, 34, 170, 93 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 21 )
 region = Rect2( 46, 137, 104, 244 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 20 )
 region = Rect2( 64, 95, 56, 39 )
 
@@ -138,6 +206,10 @@ script = ExtResource( 14 )
 
 [node name="StatController" type="Node2D" parent="."]
 script = ExtResource( 18 )
+
+[node name="EnergySpendTimer" type="Timer" parent="StatController"]
+
+[node name="FuelEffectTimer" type="Timer" parent="StatController"]
 
 [node name="CameraController" type="Node2D" parent="."]
 script = ExtResource( 3 )
@@ -174,6 +246,7 @@ texture = ExtResource( 6 )
 
 [node name="SpaceRocket" type="StaticBody2D" parent="Props"]
 position = Vector2( 862.699, 0 )
+script = ExtResource( 37 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Props/SpaceRocket"]
 frames = SubResource( 3 )
@@ -196,6 +269,8 @@ polygon = PoolVector2Array( 22.1624, -11.7977, 20.9719, 47.333, 45.882, 24.4727 
 
 [node name="Silo" type="StaticBody2D" parent="Props"]
 position = Vector2( 135.279, 46.3533 )
+script = ExtResource( 26 )
+_beers = [ ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 30 ) ]
 
 [node name="Sprite" type="Sprite" parent="Props/Silo"]
 texture = ExtResource( 5 )
@@ -204,13 +279,18 @@ texture = ExtResource( 5 )
 polygon = PoolVector2Array( -40.4407, -77.2463, 30.3543, -76.8717, 29.6988, -6.26401, 45.6183, -6.07672, 49.1768, -2.05002, 49.4577, 11.9966, 36.4412, 11.622, 36.4412, 5.72244, 29.3014, 5.56383, 29.1369, 73.0526, 35.9085, 73.2868, 36.1445, 82.2536, -46.9164, 81.7817, -46.9958, 72.0225, -38.8935, 72.107, -39.5144, 48.4563, -72.9401, 47.8256, -82.2788, 38.3967, -82.3671, 3.21421, -113.988, -29.5135, -109.119, -29.3262, -77.8773, -1.55626, -49.8418, -29.2326, -44.5978, -29.3262, -72.4038, 2.02167, -72.6538, 32.8967, -65.4038, 40.2717, -39.9349, 40.0473 )
 
 [node name="SiloEater" type="Area2D" parent="Props/Silo"]
-position = Vector2( -104.65, -32.4059 )
+position = Vector2( -104.414, -32.4059 )
 collision_mask = 3
 script = ExtResource( 24 )
 valid_eatable_type = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/Silo/SiloEater"]
 polygon = PoolVector2Array( 4.71579, 9.10623, 26.7161, 24.2686, 45.1488, 10.5927 )
+
+[node name="SiloTimer" type="Timer" parent="Props/Silo"]
+
+[node name="BeerSpawn" type="Node2D" parent="Props/Silo"]
+position = Vector2( 43.8625, 12.8299 )
 
 [node name="FuelTank" type="StaticBody2D" parent="Props"]
 position = Vector2( 161.485, 367.482 )
@@ -225,7 +305,7 @@ frame = 5
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/FuelTank"]
-polygon = PoolVector2Array( -27.1736, -37.8163, -27.9168, -9.72122, -43.2279, -6.59955, -50.5118, -11.0591, -47.6874, -12.5456, -37.8764, -12.2483, -38.0251, -44.6542, -29.998, -50.8976, -3.53809, -59.222, 13.4081, -59.222, 32.7327, -52.83, 48.4897, -46.438, 48.1924, 66.2394, -37.5791, 65.0502, -37.5792, 55.3879, -52.5929, 49.1446, -32.6737, 46.4688, -29.2547, 52.5635, 42.6923, 52.5635, 44.0302, -13.1402, 43.2869, -38.1136, 35.5571, -44.8029, -8.88654, -46.317 )
+polygon = PoolVector2Array( -27.1736, -37.8163, -27.9168, -9.72122, -43.2279, -6.59955, -50.5118, -11.0591, -47.6874, -12.5456, -37.8764, -12.2483, -38.0251, -44.6542, -29.998, -50.8976, 0.211456, -60.4247, 12.1511, -60.4247, 32.7327, -52.83, 48.4897, -46.438, 48.1924, 66.2394, -37.5791, 65.0502, -37.5792, 55.3879, -52.5929, 49.1446, -32.6737, 46.4688, -29.2547, 52.5635, 42.6923, 52.5635, 44.0302, -13.1402, 43.2869, -38.1136, 35.5571, -44.8029, -8.88654, -46.317 )
 
 [node name="FuelTankEater" type="Area2D" parent="Props/FuelTank"]
 position = Vector2( 2.89407, -0.9617 )
@@ -264,7 +344,7 @@ polygon = PoolVector2Array( 342.193, -0.0755844, 341.532, 43.3383, 334.843, 50.8
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticColliders/Cargo"]
 position = Vector2( -55.4911, 37.5741 )
-polygon = PoolVector2Array( 42.9872, 90.0779, 233.455, 89.5549, 236.523, 92.7404, 235.757, 121.558, -5.68951, 121.243, -6.51324, 92.3019, 6.78125, 91.1114, 6.18597, 66.9035, 3.20959, 62.935, 3.28198, 41.383, 46.8517, 41.6728, 46.8266, 64.2321, 43.0808, 65.4495 )
+polygon = PoolVector2Array( 42.7974, 90.8078, 233.46, 90.5719, 235.82, 95.2912, 235.757, 121.558, -5.68951, 121.243, -6.51324, 92.3019, 6.78125, 91.1114, 6.18597, 66.9035, 3.20959, 62.935, 3.28198, 41.383, 46.8517, 41.6728, 46.8266, 64.2321, 43.0808, 65.4495 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticColliders/Cargo"]
 position = Vector2( -260.415, 144.464 )
@@ -274,29 +354,54 @@ shape = SubResource( 12 )
 position = Vector2( -117.358, 143.277 )
 shape = SubResource( 13 )
 
+[node name="Conveyor" type="StaticBody2D" parent="StaticColliders"]
+position = Vector2( 288, 112 )
+script = ExtResource( 36 )
+_speed = 30.0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="StaticColliders/Conveyor"]
+position = Vector2( -33.892, -4.84665 )
+frames = SubResource( 22 )
+frame = 4
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticColliders/Conveyor"]
+position = Vector2( -34.687, -5.46584 )
+shape = SubResource( 23 )
+
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="Draggable" parent="Objects" instance=ExtResource( 11 )]
-position = Vector2( -132.433, 47.6758 )
-
-[node name="Draggable2" parent="Objects" instance=ExtResource( 11 )]
-position = Vector2( 387.234, 86.876 )
-
 [node name="Fuels" type="Node2D" parent="Objects"]
+
+[node name="Fuel" parent="Objects/Fuels" instance=ExtResource( 11 )]
+position = Vector2( -152.392, 365.085 )
+input_pickable = true
+collision_layer = 3
+
+[node name="Fuel2" parent="Objects/Fuels" instance=ExtResource( 11 )]
+position = Vector2( -108.789, 371.318 )
+input_pickable = true
+collision_layer = 3
 
 [node name="Bottles" type="Node2D" parent="Objects"]
 
 [node name="Sanks" type="Node2D" parent="Objects"]
 
-[node name="Eatable" parent="Objects" instance=ExtResource( 25 )]
-position = Vector2( 706.721, 82.4224 )
-type = 3
+[node name="Sank" parent="Objects/Sanks" instance=ExtResource( 25 )]
+position = Vector2( -207.432, 106.262 )
+input_pickable = true
+collision_layer = 3
+
+[node name="Sank2" parent="Objects/Sanks" instance=ExtResource( 25 )]
+position = Vector2( -164.328, 105.729 )
+input_pickable = true
+collision_layer = 3
 
 [node name="FG" type="Node2D" parent="."]
 
 [node name="SiloEater" type="Sprite" parent="FG"]
 position = Vector2( 59.6039, 55.5942 )
-texture = SubResource( 14 )
+texture = SubResource( 24 )
 region_rect = Rect2( 342, 176, 76, 78 )
 
 [node name="FuelTank" type="Node2D" parent="FG"]
@@ -308,6 +413,7 @@ texture = ExtResource( 8 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" type="Node2D" parent="CanvasLayer"]
+visible = false
 
 [node name="TabMenu" type="TextureRect" parent="CanvasLayer/GUI"]
 anchor_right = 1.0
@@ -328,7 +434,7 @@ margin_left = -140.5
 margin_top = -83.5
 margin_right = 140.5
 margin_bottom = 83.5
-texture = SubResource( 15 )
+texture = SubResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -338,7 +444,7 @@ margin_left = 111.247
 margin_top = 66.1271
 margin_right = 140.247
 margin_bottom = 94.1271
-texture_normal = SubResource( 17 )
+texture_normal = SubResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -348,14 +454,14 @@ margin_left = 111.851
 margin_top = 118.203
 margin_right = 140.851
 margin_bottom = 146.203
-texture_normal = SubResource( 18 )
+texture_normal = SubResource( 28 )
 
 [node name="C_Button" type="TextureButton" parent="CanvasLayer/GUI/TabMenu/MapRect"]
 margin_left = 231.341
 margin_top = 62.1467
 margin_right = 260.341
 margin_bottom = 90.1467
-texture_normal = SubResource( 19 )
+texture_normal = SubResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -365,22 +471,12 @@ margin_left = 250.069
 margin_top = 15.4679
 margin_right = 266.069
 margin_bottom = 27.4679
-texture_normal = SubResource( 20 )
+texture_normal = SubResource( 30 )
 
 [node name="Battery" type="TextureRect" parent="CanvasLayer/GUI/TabMenu"]
 margin_right = 170.0
 margin_bottom = 93.0
-texture = SubResource( 21 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Pipe" type="TextureRect" parent="CanvasLayer/GUI/TabMenu"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -244.0
-margin_right = 104.0
-texture = SubResource( 22 )
+texture = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -414,47 +510,99 @@ margin_right = 105.0
 margin_bottom = 44.0
 text = "Buy malt (10)"
 
+[node name="Pipe" type="Control" parent="CanvasLayer/GUI/TabMenu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pipe-Img" type="TextureRect" parent="CanvasLayer/GUI/TabMenu/Pipe"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -244.0
+margin_right = 104.0
+texture = SubResource( 32 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pipe-Arrow" type="TextureRect" parent="CanvasLayer/GUI/TabMenu/Pipe"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 22.0
+margin_top = -54.0
+margin_right = -2.0
+margin_bottom = -38.0
+rect_rotation = 44.9224
+rect_pivot_offset = Vector2( 16, 16 )
+texture = ExtResource( 28 )
+script = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pipe-glass-effect" type="TextureRect" parent="CanvasLayer/GUI/TabMenu/Pipe"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -243.0
+margin_right = 104.0
+texture = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsContainer" type="VBoxContainer" parent="CanvasLayer/GUI/TabMenu"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -104.0
+margin_top = -55.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyCount" parent="CanvasLayer/GUI/TabMenu/StatsContainer" instance=ExtResource( 9 )]
+margin_top = 0.0
+margin_right = 104.0
+margin_bottom = 14.0
+_template_string = "Energy: %s"
+
+[node name="MoneyCount" parent="CanvasLayer/GUI/TabMenu/StatsContainer" instance=ExtResource( 9 )]
+margin_top = 18.0
+margin_right = 104.0
+margin_bottom = 32.0
+_template_string = "Money: %s"
+
 [node name="Tab_Button" type="TextureButton" parent="CanvasLayer/GUI"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = 584.0
 margin_right = 640.0
 margin_bottom = 39.0
-texture_normal = SubResource( 23 )
+texture_normal = SubResource( 33 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StatsContainer" type="VBoxContainer" parent="CanvasLayer/GUI"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 536.0
-margin_top = 265.0
-margin_right = 640.0
-margin_bottom = 320.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EnergyCount" parent="CanvasLayer/GUI/StatsContainer" instance=ExtResource( 9 )]
-margin_top = 0.0
-margin_right = 104.0
-margin_bottom = 14.0
-align = 2
-template_string = "Energy: %s"
-
-[node name="MoneyCount" parent="CanvasLayer/GUI/StatsContainer" instance=ExtResource( 9 )]
-margin_top = 18.0
-margin_right = 104.0
-margin_bottom = 32.0
-align = 2
-template_string = "Money: %s"
-
+[connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/Pipe/Pipe-Arrow" method="_on_StatController_stat_changed"]
+[connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/StatsContainer/EnergyCount" method="_on_StatController_stat_changed"]
+[connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/StatsContainer/MoneyCount" method="_on_StatController_stat_changed"]
+[connection signal="timeout" from="StatController/EnergySpendTimer" to="StatController" method="_on_EnergySpendTimer_timeout"]
+[connection signal="timeout" from="StatController/FuelEffectTimer" to="StatController" method="_on_FuelEffectTimer_timeout"]
+[connection signal="earned_money" from="Props/SpaceRocket" to="StatController" method="_on_SpaceRocket_earned_money"]
 [connection signal="body_entered" from="Props/SpaceRocket/SpaceRocketEater" to="Props/SpaceRocket/SpaceRocketEater" method="_on_Eater_body_entered"]
+[connection signal="eated" from="Props/SpaceRocket/SpaceRocketEater" to="StatController" method="_on_SpaceRocketEater_eated"]
+[connection signal="eated" from="Props/SpaceRocket/SpaceRocketEater" to="Props/SpaceRocket" method="_on_SpaceRocketEater_eated"]
 [connection signal="body_entered" from="Props/Silo/SiloEater" to="Props/Silo/SiloEater" method="_on_Eater_body_entered"]
+[connection signal="eated" from="Props/Silo/SiloEater" to="Props/Silo" method="_on_SiloEater_eated"]
+[connection signal="timeout" from="Props/Silo/SiloTimer" to="Props/Silo" method="_on_SiloTimer_timeout"]
 [connection signal="body_entered" from="Props/FuelTank/FuelTankEater" to="Props/FuelTank/FuelTankEater" method="_on_Eater_body_entered"]
+[connection signal="eated" from="Props/FuelTank/FuelTankEater" to="StatController" method="_on_FuelTankEater_eated"]
 [connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/A_Button" to="CameraController" method="_on_A_Button_button_down"]
 [connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/B_Button" to="CameraController" method="_on_B_Button_button_down"]
 [connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/C_Button" to="CameraController" method="_on_C_Button_button_down"]
