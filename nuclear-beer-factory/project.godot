@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Reference",
+"class": "EatableType",
+"language": "GDScript",
+"path": "res://scripts/Common/EatableType.gd"
+}, {
+"base": "Reference",
 "class": "RoomType",
 "language": "GDScript",
 "path": "res://scripts/Common/RoomType.gd"
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/Common/Values.gd"
 } ]
 _global_script_class_icons={
+"EatableType": "",
 "RoomType": "",
 "Values": ""
 }

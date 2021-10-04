@@ -8,6 +8,7 @@ onready var tab_menu_btn = gui.get_node("Tab_Button")
 
 
 func _ready() -> void:
+	gui.visible = true
 	tab_menu.visible = false
 	tab_menu_btn.visible = true
 
