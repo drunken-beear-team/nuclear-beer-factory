@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-export(float) var _force: float = 100
+export(float) var _force: float = 50
 
 var _is_mouse_entered: bool = false
 var _dragging_pos: Vector2 = Vector2.ZERO

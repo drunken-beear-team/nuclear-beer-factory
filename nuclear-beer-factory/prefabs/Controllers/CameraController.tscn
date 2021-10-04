@@ -9,10 +9,9 @@
 script = ExtResource( 4 )
 
 [node name="Camera_A" parent="." instance=ExtResource( 1 )]
-position = Vector2( -42.3785, 133.492 )
 
 [node name="Camera_B" parent="." instance=ExtResource( 2 )]
-position = Vector2( 6.35681, 658.986 )
+position = Vector2( 0, 320 )
 
 [node name="Camera_C" parent="." instance=ExtResource( 3 )]
-position = Vector2( 735.267, 139.849 )
+position = Vector2( 640, 0 )

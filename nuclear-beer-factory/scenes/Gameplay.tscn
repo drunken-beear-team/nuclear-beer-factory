@@ -1,62 +1,151 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://prefabs/Environment/Fuel tank.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/sprites/block sqrt.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/bake-fire.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/basement-bg.png" type="Texture" id=2]
 [ext_resource path="res://prefabs/Controllers/CameraController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefabs/Controllers/GameController.tscn" type="PackedScene" id=4]
-[ext_resource path="res://prefabs/Environment/SpaceRocket.tscn" type="PackedScene" id=5]
-[ext_resource path="res://prefabs/Draggable/Draggable.tscn" type="PackedScene" id=7]
-[ext_resource path="res://prefabs/Environment/Conveyor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sprites/cargo-bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/shop.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/bake-fg.png" type="Texture" id=8]
 [ext_resource path="res://prefabs/GUI/GUI.tscn" type="PackedScene" id=9]
-[ext_resource path="res://prefabs/Environment/Floor.tscn" type="PackedScene" id=15]
+[ext_resource path="res://assets/sprites/bake-bg.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/tank-empty.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/tank-eater.png" type="Texture" id=13]
+[ext_resource path="res://scripts/Gameplay.gd" type="Script" id=14]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 320, 16 )
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 137, 135 )
 
-[sub_resource type="AtlasTexture" id=2]
-flags = 2
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 640, 32 )
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 137, 0, 137, 135 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 274, 0, 137, 135 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 411, 0, 137, 135 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 548, 0, 137, 135 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 685, 0, 137, 135 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 60.9629, 17.1825 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 16.2016, 15.7127 )
 
 [node name="Gameplay" type="Node2D"]
+script = ExtResource( 14 )
 
 [node name="GameController" parent="." instance=ExtResource( 4 )]
+position = Vector2( 4.45447, 8.90897 )
+_fuel_prefab = null
 
 [node name="CameraController" parent="." instance=ExtResource( 3 )]
+_bg_arr = [ null, null, null ]
 
 [node name="Environment" type="Node2D" parent="."]
 
-[node name="FuelTank" parent="Environment" instance=ExtResource( 1 )]
-position = Vector2( 224.86, 737.291 )
+[node name="Rooms" type="Node2D" parent="Environment"]
 
-[node name="SpaceRocket" parent="Environment" instance=ExtResource( 5 )]
-position = Vector2( 1033.84, 151.332 )
+[node name="Shop" type="StaticBody2D" parent="Environment/Rooms"]
 
-[node name="Conveyor" parent="Environment" instance=ExtResource( 8 )]
-position = Vector2( 693.733, 254.514 )
-_speed = 80.0
+[node name="Sprite" type="Sprite" parent="Environment/Rooms/Shop"]
+position = Vector2( 0.0936432, 0 )
+texture = ExtResource( 7 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Shop"]
+position = Vector2( -8.49417, -6.17258 )
+polygon = PoolVector2Array( 328.57, -3.30367, 244.239, -3.6146, 193.677, -3.34646, 188.171, -9.85381, 188.671, -16.1943, 223.711, -16.6949, 223.131, -82.6969, -291.432, -82.0602, -292.027, 134.865, -60.9129, 135.052, -61.1002, 166.517, -311.584, 165.427, -311.006, -120.827, 329.086, -120.33 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Environment/Rooms/Shop"]
+polygon = PoolVector2Array( 23.0914, 160.643, 22.177, 128.88, 319.965, 129.254, 321.125, 160.878 )
+
+[node name="BeerTank" type="StaticBody2D" parent="Environment/Rooms/Shop"]
+position = Vector2( 135.279, 46.3533 )
+
+[node name="Sprite" type="Sprite" parent="Environment/Rooms/Shop/BeerTank"]
+texture = ExtResource( 12 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Shop/BeerTank"]
+polygon = PoolVector2Array( -40.4407, -77.2463, 30.3543, -76.8717, 29.6988, -6.26401, 45.6183, -6.07672, 49.1768, -2.05002, 49.4577, 11.9966, 36.4412, 11.622, 36.4412, 5.72244, 29.3014, 5.56383, 29.1369, 73.0526, 35.9085, 73.2868, 36.1445, 82.2536, -46.9164, 81.7817, -46.9958, 72.0225, -38.8935, 72.107, -39.5144, 48.4563, -72.9401, 47.8256, -82.2788, 38.3967, -82.3671, 3.21421, -113.988, -29.5135, -109.119, -29.3262, -77.8773, -1.55626, -49.8418, -29.2326, -44.5978, -29.3262, -72.4038, 2.02167, -72.6538, 32.8967, -65.4038, 40.2717, -39.9349, 40.0473 )
+
+[node name="Basement" type="StaticBody2D" parent="Environment/Rooms"]
+position = Vector2( 0, 320 )
+
+[node name="Sprite" type="Sprite" parent="Environment/Rooms/Basement"]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Basement"]
+position = Vector2( -10.0783, -659.09 )
+polygon = PoolVector2Array( -310.948, 499.143, -60.3598, 499.144, -61, 552.375, -104.375, 582.375, -236.125, 582.25, -235.063, 654.75, -199.324, 654.745, -199.125, 646.931, -188.928, 646.931, -188.796, 730.165, -198.861, 730.099, -199.125, 723.544, -236.869, 723.875, -236.869, 738.509, -2.8568, 736.907, -2.7714, 772.032, 241.026, 773.983, 238.777, 581.978, 80.1008, 581.269, 33.4844, 550.545, 33.0312, 499.299, 329.334, 498.652, 328.829, 818.801, -311.75, 819.125 )
+
+[node name="FuelTank" type="StaticBody2D" parent="Environment/Rooms/Basement"]
+position = Vector2( 161.485, 47.482 )
+collision_mask = 3
+
+[node name="FT BG" type="Sprite" parent="Environment/Rooms/Basement/FuelTank"]
+texture = ExtResource( 10 )
+
+[node name="FT Fire" type="AnimatedSprite" parent="Environment/Rooms/Basement/FuelTank"]
+frames = SubResource( 9 )
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Basement/FuelTank"]
+polygon = PoolVector2Array( -27.1736, -37.8163, -27.9168, -9.72122, -43.2279, -6.59955, -50.5118, -11.0591, -47.6874, -12.5456, -37.8764, -12.2483, -38.0251, -44.6542, -29.998, -50.8976, -3.53809, -59.222, 13.4081, -59.222, 32.7327, -52.83, 48.4897, -46.438, 48.1924, 66.2394, -37.5791, 65.0502, -37.5792, 55.3879, -52.5929, 49.1446, -32.6737, 46.4688, -29.2547, 52.5635, 42.6923, 52.5635, 44.0302, -13.1402, 43.2869, -38.1136, 35.5571, -44.8029, -8.88654, -46.317 )
+
+[node name="Cargo" type="StaticBody2D" parent="Environment/Rooms"]
+position = Vector2( 640, 0 )
+
+[node name="Sprite" type="Sprite" parent="Environment/Rooms/Cargo"]
+texture = ExtResource( 6 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Environment/Rooms/Cargo"]
+position = Vector2( -319.35, -160.325 )
+polygon = PoolVector2Array( 342.193, -0.0755844, 341.532, 43.3383, 334.843, 50.8452, 306.079, 50.9195, 306.334, 89.6825, 311.902, 98.3687, 311.679, 113.514, 269.139, 114.405, 268.694, 99.7051, 275.375, 90.3506, 275.234, 51.1425, 110.559, 51.5965, 111.673, 131.777, 145.081, 132.446, 153.322, 136.9, 149.313, 149.595, -1.02597, 149.818, 0.310364, 0.369865 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Environment/Rooms/Cargo"]
+position = Vector2( -55.4911, 37.5741 )
+polygon = PoolVector2Array( 42.9872, 90.0779, 233.455, 89.5549, 236.523, 92.7404, 235.757, 121.558, -5.68951, 121.243, -6.51324, 92.3019, 6.78125, 91.1114, 6.18597, 66.9035, 3.20959, 62.935, 3.28198, 41.383, 46.8517, 41.6728, 46.8266, 64.2321, 43.0808, 65.4495 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rooms/Cargo"]
+position = Vector2( -260.415, 144.464 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Rooms/Cargo"]
+position = Vector2( -117.358, 143.277 )
+shape = SubResource( 11 )
 
 [node name="Fuels" type="Node2D" parent="Environment"]
 
-[node name="Box" parent="Environment/Fuels" instance=ExtResource( 7 )]
-position = Vector2( 92.4986, 728.216 )
-
 [node name="Bottles" type="Node2D" parent="Environment"]
 
-[node name="Floor" parent="Environment" instance=ExtResource( 15 )]
-position = Vector2( -56.5927, 256 )
+[node name="TankEater" type="Sprite" parent="Environment"]
+position = Vector2( 0.316864, 0.175255 )
+texture = ExtResource( 13 )
 
-[node name="Floor2" type="StaticBody2D" parent="Environment"]
-position = Vector2( 0, 832 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor2"]
-shape = SubResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="Environment/Floor2"]
-position = Vector2( -1.3385, -0.23925 )
-scale = Vector2( 0.997323, 1.01495 )
-texture = SubResource( 2 )
+[node name="FT FG" type="Sprite" parent="Environment"]
+position = Vector2( 161.485, 367.482 )
+texture = ExtResource( 8 )
 
 [node name="GUI" parent="." instance=ExtResource( 9 )]
 
+[connection signal="stat_changed" from="." to="GUI" method="_on_stat_changed"]
 [connection signal="room_switched" from="GUI" to="CameraController" method="_on_GUI_room_switched"]
