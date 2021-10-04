@@ -1,23 +1,66 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-fire.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/environment/rooms/basement-bg.png" type="Texture" id=2]
-[ext_resource path="res://prefabs/Controllers/CameraController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prefabs/Controllers/GameController.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/Controllers/CameraController.gd" type="Script" id=3]
+[ext_resource path="res://assets/music/main-theme.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/sprites/environment/silo/silo-empty.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/environment/rooms/cargo-bg.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/environment/rooms/craftroom-bg.png" type="Texture" id=7]
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-fg.png" type="Texture" id=8]
-[ext_resource path="res://prefabs/GUI/GUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://prefabs/GUI/StatCount.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-bg.png" type="Texture" id=10]
+[ext_resource path="res://prefabs/Physics Bodies/Draggable.tscn" type="PackedScene" id=11]
+[ext_resource path="res://prefabs/Cameras/Camera_A.tscn" type="PackedScene" id=12]
 [ext_resource path="res://assets/sprites/environment/silo/silo-eater.png" type="Texture" id=13]
-[ext_resource path="res://scripts/Gameplay.gd" type="Script" id=14]
+[ext_resource path="res://scripts/Controllers/Gameplay.gd" type="Script" id=14]
+[ext_resource path="res://prefabs/Cameras/Camera_B.tscn" type="PackedScene" id=15]
+[ext_resource path="res://prefabs/Cameras/Camera_C.tscn" type="PackedScene" id=16]
+[ext_resource path="res://assets/sprites/gui/map-btns.png" type="Texture" id=17]
+[ext_resource path="res://scripts/Controllers/StatController.gd" type="Script" id=18]
+[ext_resource path="res://scripts/GUI/GUIController.gd" type="Script" id=19]
+[ext_resource path="res://assets/sprites/gui/map.png" type="Texture" id=20]
+[ext_resource path="res://assets/sprites/gui/hud.png" type="Texture" id=21]
+[ext_resource path="res://assets/sprites/gui/menu-bg.png" type="Texture" id=22]
+[ext_resource path="res://assets/sprites/environment/space-rocket.png" type="Texture" id=23]
+[ext_resource path="res://prefabs/Environment/Eaters/FuelTankEater.tscn" type="PackedScene" id=24]
+[ext_resource path="res://prefabs/Physics Bodies/Eatable.tscn" type="PackedScene" id=25]
 
 [sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 23 )
+region = Rect2( 0, 0, 150, 316 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 23 )
+region = Rect2( 150, 0, 150, 316 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=21]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 862.699, 0 ), Vector2( 862.699, -393.778 ) ]
+}
+
+[sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 137, 135 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=23]
 atlas = ExtResource( 1 )
 region = Rect2( 137, 0, 137, 135 )
 
@@ -39,7 +82,7 @@ region = Rect2( 685, 0, 137, 135 )
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 15.0
@@ -51,102 +94,339 @@ extents = Vector2( 60.9629, 17.1825 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 16.2016, 15.7127 )
 
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 13 )
+region = Rect2( 341, 176, 77, 79 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 20 )
+region = Rect2( 174, 88, 281, 167 )
+
+[sub_resource type="StreamTexture" id=12]
+load_path = "res://.import/map-btns.png-f3a7d6423759c0d2f16a388d328eda9a.stex"
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = SubResource( 12 )
+region = Rect2( 285, 157, 29, 28 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 17 )
+region = Rect2( 286, 207, 29, 28 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 17 )
+region = Rect2( 402, 153, 29, 28 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 17 )
+region = Rect2( 424, 103, 16, 12 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 21 )
+region = Rect2( 51, 34, 170, 93 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 21 )
+region = Rect2( 46, 137, 104, 244 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 20 )
+region = Rect2( 64, 95, 56, 39 )
+
 [node name="Gameplay" type="Node2D"]
 script = ExtResource( 14 )
 
-[node name="GameController" parent="." instance=ExtResource( 4 )]
-position = Vector2( 4.45447, 8.90897 )
+[node name="StatController" type="Node2D" parent="."]
+script = ExtResource( 18 )
 
-[node name="CameraController" parent="." instance=ExtResource( 3 )]
-_bg_arr = [ null, null, null ]
+[node name="CameraController" type="Node2D" parent="."]
+script = ExtResource( 3 )
 
-[node name="Environment" type="Node2D" parent="."]
+[node name="Camera_A" parent="CameraController" instance=ExtResource( 12 )]
 
-[node name="Rooms" type="Node2D" parent="Environment"]
+[node name="Camera_B" parent="CameraController" instance=ExtResource( 15 )]
+position = Vector2( 0, 320 )
 
-[node name="Shop" type="StaticBody2D" parent="Environment/Rooms"]
+[node name="Camera_C" parent="CameraController" instance=ExtResource( 16 )]
+position = Vector2( 640, 0 )
 
-[node name="Sprite" type="Sprite" parent="Environment/Rooms/Shop"]
+[node name="GUIController" type="Node2D" parent="."]
+script = ExtResource( 19 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="BG" type="Node2D" parent="."]
+
+[node name="Shop-BG" type="Sprite" parent="BG"]
 position = Vector2( 0.0936432, 0 )
 texture = ExtResource( 7 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Shop"]
+[node name="Basement-BG" type="Sprite" parent="BG"]
+position = Vector2( 0, 320 )
+texture = ExtResource( 2 )
+
+[node name="CargoBG" type="Sprite" parent="BG"]
+position = Vector2( 640, 0 )
+texture = ExtResource( 6 )
+
+[node name="Props" type="Node2D" parent="."]
+
+[node name="SpaceRocket" type="StaticBody2D" parent="Props"]
+position = Vector2( 862.699, 0 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Props/SpaceRocket"]
+frames = SubResource( 20 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Props/SpaceRocket"]
+anims/Fly = SubResource( 21 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/SpaceRocket"]
+position = Vector2( -16.8179, 0 )
+polygon = PoolVector2Array( -20.1502, 22.8001, 16.3975, 22.7387, 16.3975, 86.7386, -20.0728, 87.3367, -20.0728, 105.858, -15.5677, 111.864, 2.61948, 113.032, -8.39294, 138.728, -4.72214, 144.401, 49.0052, 144.234, 51.508, 139.229, 40.6624, 112.365, 57.8485, 112.031, 64.3975, 102.739, 64.189, -11.2746, 41.6636, -35.1349, 41.4908, -48.1211, 43.3449, -48.386, 43.2125, -62.159, 41.5571, -62.0928, 41.5571, -80.2361, 43.1739, -80.1827, 43.0794, -96.1842, 41.8393, -96.2338, 25.7227, -113.182, 25.4074, -129.895, 28.3505, -132.733, 29.6118, -137.253, 27.6147, -144.085, 22.0438, -146.608, 16.8933, -144.926, 13.4246, -141.562, 13.4246, -134.099, 16.3975, -129.261, 16.3975, -113.261, -0.851231, -95.4188, -0.629667, -79.9766, 1.15414, -80.0509, 1.22846, -62.2872, -0.390728, -62.2885, -0.703997, -48.3883, 0.397453, -48.091, 0.397453, -33.2613, -20.4065, -12.1089 )
+
+[node name="Silo" type="StaticBody2D" parent="Props"]
+position = Vector2( 135.279, 46.3533 )
+
+[node name="Sprite" type="Sprite" parent="Props/Silo"]
+texture = ExtResource( 5 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/Silo"]
+polygon = PoolVector2Array( -40.4407, -77.2463, 30.3543, -76.8717, 29.6988, -6.26401, 45.6183, -6.07672, 49.1768, -2.05002, 49.4577, 11.9966, 36.4412, 11.622, 36.4412, 5.72244, 29.3014, 5.56383, 29.1369, 73.0526, 35.9085, 73.2868, 36.1445, 82.2536, -46.9164, 81.7817, -46.9958, 72.0225, -38.8935, 72.107, -39.5144, 48.4563, -72.9401, 47.8256, -82.2788, 38.3967, -82.3671, 3.21421, -113.988, -29.5135, -109.119, -29.3262, -77.8773, -1.55626, -49.8418, -29.2326, -44.5978, -29.3262, -72.4038, 2.02167, -72.6538, 32.8967, -65.4038, 40.2717, -39.9349, 40.0473 )
+
+[node name="FuelTank" type="StaticBody2D" parent="Props"]
+position = Vector2( 161.485, 367.482 )
+collision_mask = 3
+
+[node name="FT BG" type="Sprite" parent="Props/FuelTank"]
+texture = ExtResource( 10 )
+
+[node name="FuelTank Fire" type="AnimatedSprite" parent="Props/FuelTank"]
+frames = SubResource( 7 )
+frame = 1
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/FuelTank"]
+polygon = PoolVector2Array( -27.1736, -37.8163, -27.9168, -9.72122, -43.2279, -6.59955, -50.5118, -11.0591, -47.6874, -12.5456, -37.8764, -12.2483, -38.0251, -44.6542, -29.998, -50.8976, -3.53809, -59.222, 13.4081, -59.222, 32.7327, -52.83, 48.4897, -46.438, 48.1924, 66.2394, -37.5791, 65.0502, -37.5792, 55.3879, -52.5929, 49.1446, -32.6737, 46.4688, -29.2547, 52.5635, 42.6923, 52.5635, 44.0302, -13.1402, 43.2869, -38.1136, 35.5571, -44.8029, -8.88654, -46.317 )
+
+[node name="FuelTankEater" parent="Props/FuelTank" instance=ExtResource( 24 )]
+
+[node name="StaticColliders" type="Node2D" parent="."]
+
+[node name="Shop" type="StaticBody2D" parent="StaticColliders"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticColliders/Shop"]
 position = Vector2( -8.49417, -6.17258 )
 polygon = PoolVector2Array( 328.57, -3.30367, 244.239, -3.6146, 193.677, -3.34646, 188.171, -9.85381, 188.671, -16.1943, 223.711, -16.6949, 223.131, -82.6969, -291.432, -82.0602, -292.027, 134.865, -60.9129, 135.052, -61.1002, 166.517, -311.584, 165.427, -311.006, -120.827, 329.086, -120.33 )
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Environment/Rooms/Shop"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticColliders/Shop"]
 polygon = PoolVector2Array( 23.0914, 160.643, 22.177, 128.88, 319.965, 129.254, 321.125, 160.878 )
 
-[node name="BeerTank" type="StaticBody2D" parent="Environment/Rooms/Shop"]
-position = Vector2( 135.279, 46.3533 )
-
-[node name="Sprite" type="Sprite" parent="Environment/Rooms/Shop/BeerTank"]
-texture = ExtResource( 5 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Shop/BeerTank"]
-polygon = PoolVector2Array( -40.4407, -77.2463, 30.3543, -76.8717, 29.6988, -6.26401, 45.6183, -6.07672, 49.1768, -2.05002, 49.4577, 11.9966, 36.4412, 11.622, 36.4412, 5.72244, 29.3014, 5.56383, 29.1369, 73.0526, 35.9085, 73.2868, 36.1445, 82.2536, -46.9164, 81.7817, -46.9958, 72.0225, -38.8935, 72.107, -39.5144, 48.4563, -72.9401, 47.8256, -82.2788, 38.3967, -82.3671, 3.21421, -113.988, -29.5135, -109.119, -29.3262, -77.8773, -1.55626, -49.8418, -29.2326, -44.5978, -29.3262, -72.4038, 2.02167, -72.6538, 32.8967, -65.4038, 40.2717, -39.9349, 40.0473 )
-
-[node name="Basement" type="StaticBody2D" parent="Environment/Rooms"]
+[node name="Basement" type="StaticBody2D" parent="StaticColliders"]
 position = Vector2( 0, 320 )
 
-[node name="Sprite" type="Sprite" parent="Environment/Rooms/Basement"]
-texture = ExtResource( 2 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Basement"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticColliders/Basement"]
 position = Vector2( -10.0783, -659.09 )
 polygon = PoolVector2Array( -310.948, 499.143, -60.3598, 499.144, -61, 552.375, -104.375, 582.375, -236.125, 582.25, -235.063, 654.75, -199.324, 654.745, -199.125, 646.931, -188.928, 646.931, -188.796, 730.165, -198.861, 730.099, -199.125, 723.544, -236.869, 723.875, -236.869, 738.509, -2.8568, 736.907, -2.7714, 772.032, 241.026, 773.983, 238.777, 581.978, 80.1008, 581.269, 33.4844, 550.545, 33.0312, 499.299, 329.334, 498.652, 328.829, 818.801, -311.75, 819.125 )
 
-[node name="FuelTank" type="StaticBody2D" parent="Environment/Rooms/Basement"]
-position = Vector2( 161.485, 47.482 )
-collision_mask = 3
-
-[node name="FT BG" type="Sprite" parent="Environment/Rooms/Basement/FuelTank"]
-texture = ExtResource( 10 )
-
-[node name="FT Fire" type="AnimatedSprite" parent="Environment/Rooms/Basement/FuelTank"]
-frames = SubResource( 7 )
-frame = 4
-playing = true
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Basement/FuelTank"]
-polygon = PoolVector2Array( -27.1736, -37.8163, -27.9168, -9.72122, -43.2279, -6.59955, -50.5118, -11.0591, -47.6874, -12.5456, -37.8764, -12.2483, -38.0251, -44.6542, -29.998, -50.8976, -3.53809, -59.222, 13.4081, -59.222, 32.7327, -52.83, 48.4897, -46.438, 48.1924, 66.2394, -37.5791, 65.0502, -37.5792, 55.3879, -52.5929, 49.1446, -32.6737, 46.4688, -29.2547, 52.5635, 42.6923, 52.5635, 44.0302, -13.1402, 43.2869, -38.1136, 35.5571, -44.8029, -8.88654, -46.317 )
-
-[node name="Cargo" type="StaticBody2D" parent="Environment/Rooms"]
+[node name="Cargo" type="StaticBody2D" parent="StaticColliders"]
 position = Vector2( 640, 0 )
 
-[node name="Sprite" type="Sprite" parent="Environment/Rooms/Cargo"]
-texture = ExtResource( 6 )
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Environment/Rooms/Cargo"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticColliders/Cargo"]
 position = Vector2( -319.35, -160.325 )
 polygon = PoolVector2Array( 342.193, -0.0755844, 341.532, 43.3383, 334.843, 50.8452, 306.079, 50.9195, 306.334, 89.6825, 311.902, 98.3687, 311.679, 113.514, 269.139, 114.405, 268.694, 99.7051, 275.375, 90.3506, 275.234, 51.1425, 110.559, 51.5965, 111.673, 131.777, 145.081, 132.446, 153.322, 136.9, 149.313, 149.595, -1.02597, 149.818, 0.310364, 0.369865 )
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Environment/Rooms/Cargo"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticColliders/Cargo"]
 position = Vector2( -55.4911, 37.5741 )
 polygon = PoolVector2Array( 42.9872, 90.0779, 233.455, 89.5549, 236.523, 92.7404, 235.757, 121.558, -5.68951, 121.243, -6.51324, 92.3019, 6.78125, 91.1114, 6.18597, 66.9035, 3.20959, 62.935, 3.28198, 41.383, 46.8517, 41.6728, 46.8266, 64.2321, 43.0808, 65.4495 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rooms/Cargo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticColliders/Cargo"]
 position = Vector2( -260.415, 144.464 )
 shape = SubResource( 8 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Rooms/Cargo"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticColliders/Cargo"]
 position = Vector2( -117.358, 143.277 )
 shape = SubResource( 9 )
 
-[node name="Fuels" type="Node2D" parent="Environment"]
+[node name="Objects" type="Node2D" parent="."]
 
-[node name="Bottles" type="Node2D" parent="Environment"]
+[node name="Draggable" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( -132.433, 47.6758 )
 
-[node name="TankEater" type="Sprite" parent="Environment"]
-position = Vector2( 0.316864, 0.175255 )
-texture = ExtResource( 13 )
+[node name="Draggable2" parent="Objects" instance=ExtResource( 11 )]
+position = Vector2( 387.234, 86.876 )
 
-[node name="FT FG" type="Sprite" parent="Environment"]
+[node name="Fuels" type="Node2D" parent="Objects"]
+
+[node name="Bottles" type="Node2D" parent="Objects"]
+
+[node name="Sanks" type="Node2D" parent="Objects"]
+
+[node name="Eatable" parent="Objects" instance=ExtResource( 25 )]
+position = Vector2( 37.5823, 348.253 )
+
+[node name="FG" type="Node2D" parent="."]
+
+[node name="SiloEater" type="Sprite" parent="FG"]
+position = Vector2( 59.6039, 55.5942 )
+texture = SubResource( 10 )
+region_rect = Rect2( 342, 176, 76, 78 )
+
+[node name="FuelTank" type="Node2D" parent="FG"]
+
+[node name="FuelTank FG" type="Sprite" parent="FG/FuelTank"]
 position = Vector2( 161.485, 367.482 )
 texture = ExtResource( 8 )
 
-[node name="GUI" parent="." instance=ExtResource( 9 )]
-layer = -1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[connection signal="stat_changed" from="." to="GUI" method="_on_stat_changed"]
-[connection signal="room_switched" from="GUI" to="CameraController" method="_on_GUI_room_switched"]
+[node name="GUI" type="Node2D" parent="CanvasLayer"]
+
+[node name="TabMenu" type="TextureRect" parent="CanvasLayer/GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 640.0
+margin_bottom = 320.0
+texture = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapRect" type="TextureRect" parent="CanvasLayer/GUI/TabMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -140.5
+margin_top = -83.5
+margin_right = 140.5
+margin_bottom = 83.5
+texture = SubResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="A_Button" type="TextureButton" parent="CanvasLayer/GUI/TabMenu/MapRect"]
+margin_left = 111.247
+margin_top = 66.1271
+margin_right = 140.247
+margin_bottom = 94.1271
+texture_normal = SubResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B_Button" type="TextureButton" parent="CanvasLayer/GUI/TabMenu/MapRect"]
+margin_left = 111.851
+margin_top = 118.203
+margin_right = 140.851
+margin_bottom = 146.203
+texture_normal = SubResource( 14 )
+
+[node name="C_Button" type="TextureButton" parent="CanvasLayer/GUI/TabMenu/MapRect"]
+margin_left = 231.341
+margin_top = 62.1467
+margin_right = 260.341
+margin_bottom = 90.1467
+texture_normal = SubResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapClose_Button" type="TextureButton" parent="CanvasLayer/GUI/TabMenu/MapRect"]
+margin_left = 250.069
+margin_top = 15.4679
+margin_right = 266.069
+margin_bottom = 27.4679
+texture_normal = SubResource( 16 )
+
+[node name="Battery" type="TextureRect" parent="CanvasLayer/GUI/TabMenu"]
+margin_right = 170.0
+margin_bottom = 93.0
+texture = SubResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pipe" type="TextureRect" parent="CanvasLayer/GUI/TabMenu"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -244.0
+margin_right = 104.0
+texture = SubResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShopPanel" type="Panel" parent="CanvasLayer/GUI/TabMenu"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -105.0
+margin_top = -122.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI/TabMenu/ShopPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fuel" type="Button" parent="CanvasLayer/GUI/TabMenu/ShopPanel/VBoxContainer"]
+margin_right = 105.0
+margin_bottom = 20.0
+text = "Buy fuel (10)"
+
+[node name="Sack" type="Button" parent="CanvasLayer/GUI/TabMenu/ShopPanel/VBoxContainer"]
+margin_top = 24.0
+margin_right = 105.0
+margin_bottom = 44.0
+text = "Buy malt (10)"
+
+[node name="Tab_Button" type="TextureButton" parent="CanvasLayer/GUI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = 584.0
+margin_right = 640.0
+margin_bottom = 39.0
+texture_normal = SubResource( 19 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsContainer" type="VBoxContainer" parent="CanvasLayer/GUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 536.0
+margin_top = 265.0
+margin_right = 640.0
+margin_bottom = 320.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyCount" parent="CanvasLayer/GUI/StatsContainer" instance=ExtResource( 9 )]
+margin_top = 0.0
+margin_right = 104.0
+margin_bottom = 14.0
+align = 2
+template_string = "Energy: %s"
+
+[node name="MoneyCount" parent="CanvasLayer/GUI/StatsContainer" instance=ExtResource( 9 )]
+margin_top = 18.0
+margin_right = 104.0
+margin_bottom = 32.0
+align = 2
+template_string = "Money: %s"
+
+[connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/A_Button" to="CameraController" method="_on_A_Button_button_down"]
+[connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/B_Button" to="CameraController" method="_on_B_Button_button_down"]
+[connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/C_Button" to="CameraController" method="_on_C_Button_button_down"]
+[connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/MapClose_Button" to="GUIController" method="_on_MapClose_Button_button_down"]
+[connection signal="button_down" from="CanvasLayer/GUI/Tab_Button" to="GUIController" method="_on_Tab_Button_button_down"]

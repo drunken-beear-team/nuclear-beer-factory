@@ -9,18 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "Room",
+"base": "Reference",
+"class": "RoomType",
 "language": "GDScript",
-"path": "res://scripts/RoomType.gd"
+"path": "res://scripts/Common/RoomType.gd"
 }, {
 "base": "Reference",
 "class": "Values",
 "language": "GDScript",
-"path": "res://scripts/Values.gd"
+"path": "res://scripts/Common/Values.gd"
 } ]
 _global_script_class_icons={
-"Room": "",
+"RoomType": "",
 "Values": ""
 }
 
@@ -57,7 +57,7 @@ spawn_fuel={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":123,"unicode":0,"echo":false,"script":null)
  ]
 }
-toggle_map_visible={
+toggle_tab_menu_visible={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777218,"unicode":0,"echo":false,"script":null)
  ]

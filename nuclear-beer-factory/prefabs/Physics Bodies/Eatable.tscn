@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://prefabs/Physics Bodies/Draggable.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/Objects/Eatable.gd" type="Script" id=2]
+[ext_resource path="res://animations/Eatable_Disappear.tres" type="Animation" id=3]
+
+[node name="Eatable" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
+anims/Eatable_Disappear = ExtResource( 3 )
