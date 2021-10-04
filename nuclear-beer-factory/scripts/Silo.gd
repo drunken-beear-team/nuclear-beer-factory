@@ -2,6 +2,7 @@ extends StaticBody2D
 
 
 signal poped_beer()
+signal finished_poped_beer()
 
 export(Array) var _beers = []
 
@@ -15,7 +16,6 @@ onready var bottles = get_tree().get_current_scene().get_node("Objects/Bottles")
 
 
 func _pop_beer() -> void:
-	emit_signal("poped_beer")
 	var new_beer: Node2D = _beers[4].instance()
 	new_beer.global_position = beer_spawn_node.global_position
 	bottles.add_child(new_beer)
@@ -25,6 +25,7 @@ func _on_SiloEater_eated(eatable_type):
 	assert(eatable_type == EatableType.SANK)
 	silo_timer.start(Values.V_SILO_SPACING_SEC)
 	silo_eater.visible = false
+	emit_signal("poped_beer")
 
 
 func _on_SiloTimer_timeout():
@@ -36,3 +37,4 @@ func _on_SiloTimer_timeout():
 		silo_eater.visible = true
 		silo_timer.stop()
 		_cur_beer_count = 0
+		emit_signal("finished_poped_beer")

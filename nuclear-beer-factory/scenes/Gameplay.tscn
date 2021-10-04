@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-fire.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/environment/rooms/basement-bg.png" type="Texture" id=2]
@@ -37,6 +37,8 @@
 [ext_resource path="res://assets/sprites/conveyor.png" type="Texture" id=35]
 [ext_resource path="res://scripts/Unused/Conveyor.gd" type="Script" id=36]
 [ext_resource path="res://scripts/SpaceRocket.gd" type="Script" id=37]
+[ext_resource path="res://assets/sprites/gui/buttons.png" type="Texture" id=38]
+[ext_resource path="res://assets/fonts/master-font.tres" type="DynamicFont" id=39]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 23 )
@@ -197,12 +199,71 @@ region = Rect2( 51, 34, 170, 93 )
 atlas = ExtResource( 21 )
 region = Rect2( 46, 137, 104, 244 )
 
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 38 )
+region = Rect2( 85, 18, 55, 85 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 38 )
+region = Rect2( 37, 26, 38, 38 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 38 )
+region = Rect2( 36, 65, 39, 38 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 38 )
+region = Rect2( 10, 108, 130, 32 )
+
 [sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 20 )
 region = Rect2( 64, 95, 56, 39 )
 
+[sub_resource type="Animation" id=38]
+resource_name = "Explode"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.9, 1.5, 2 ),
+"transitions": PoolRealArray( 9.84916, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rect_position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 853.071, 664.497 ), Vector2( 0, 0 ) ]
+}
+
 [node name="Gameplay" type="Node2D"]
 script = ExtResource( 14 )
+_bottle_prefab = ExtResource( 34 )
+_fuel_prefab = ExtResource( 11 )
+_sank_prefab = ExtResource( 25 )
 
 [node name="StatController" type="Node2D" parent="."]
 script = ExtResource( 18 )
@@ -224,6 +285,12 @@ position = Vector2( 640, 0 )
 
 [node name="GUIController" type="Node2D" parent="."]
 script = ExtResource( 19 )
+
+[node name="FuelSpawner" type="Node2D" parent="."]
+position = Vector2( -193.841, 353.194 )
+
+[node name="SankSpawner" type="Node2D" parent="."]
+position = Vector2( -231.895, -33.2978 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
@@ -362,7 +429,7 @@ _speed = 30.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="StaticColliders/Conveyor"]
 position = Vector2( -33.892, -4.84665 )
 frames = SubResource( 22 )
-frame = 4
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticColliders/Conveyor"]
@@ -413,7 +480,6 @@ texture = ExtResource( 8 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" type="Node2D" parent="CanvasLayer"]
-visible = false
 
 [node name="TabMenu" type="TextureRect" parent="CanvasLayer/GUI"]
 anchor_right = 1.0
@@ -481,35 +547,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ShopPanel" type="Panel" parent="CanvasLayer/GUI/TabMenu"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -105.0
-margin_top = -122.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GUI/TabMenu/ShopPanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Fuel" type="Button" parent="CanvasLayer/GUI/TabMenu/ShopPanel/VBoxContainer"]
-margin_right = 105.0
-margin_bottom = 20.0
-text = "Buy fuel (10)"
-
-[node name="Sack" type="Button" parent="CanvasLayer/GUI/TabMenu/ShopPanel/VBoxContainer"]
-margin_top = 24.0
-margin_right = 105.0
-margin_bottom = 44.0
-text = "Buy malt (10)"
-
 [node name="Pipe" type="Control" parent="CanvasLayer/GUI/TabMenu"]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -566,17 +603,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EnergyCount" parent="CanvasLayer/GUI/TabMenu/StatsContainer" instance=ExtResource( 9 )]
-margin_top = 0.0
-margin_right = 104.0
-margin_bottom = 14.0
-_template_string = "Energy: %s"
+[node name="Shop_Buttons" type="TextureRect" parent="CanvasLayer/GUI/TabMenu"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -55.0
+margin_top = -42.5
+margin_bottom = 42.5
+texture = SubResource( 36 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MoneyCount" parent="CanvasLayer/GUI/TabMenu/StatsContainer" instance=ExtResource( 9 )]
-margin_top = 18.0
-margin_right = 104.0
-margin_bottom = 32.0
-_template_string = "Money: %s"
+[node name="SankBuy_Button" type="TextureButton" parent="CanvasLayer/GUI/TabMenu/Shop_Buttons"]
+margin_left = 11.0
+margin_top = 5.59608
+margin_right = 55.0
+margin_bottom = 43.5961
+texture_normal = SubResource( 34 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FuelBuy_Button" type="TextureButton" parent="CanvasLayer/GUI/TabMenu/Shop_Buttons"]
+margin_left = 10.2054
+margin_top = 43.3081
+margin_right = 54.2054
+margin_bottom = 81.3081
+texture_normal = SubResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="TextureRect" parent="CanvasLayer/GUI/TabMenu"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -130.0
+margin_top = -32.0
+texture = SubResource( 37 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyCount" parent="CanvasLayer/GUI/TabMenu/Stats" instance=ExtResource( 9 )]
+margin_left = 81.3499
+margin_top = 8.77914
+margin_right = 185.35
+margin_bottom = 24.7791
+custom_fonts/font = ExtResource( 39 )
+custom_colors/font_color = Color( 0.788235, 0.796078, 0.866667, 1 )
+text = "9999"
+_template_string = "%s"
+
+[node name="MoneyCount" parent="CanvasLayer/GUI/TabMenu/Stats" instance=ExtResource( 9 )]
+margin_left = 18.5523
+margin_top = 8.54602
+margin_right = 122.552
+margin_bottom = 24.546
+custom_fonts/font = ExtResource( 39 )
+custom_colors/font_color = Color( 0.788235, 0.796078, 0.866667, 1 )
+text = "9999"
+_template_string = "%s"
 
 [node name="Tab_Button" type="TextureButton" parent="CanvasLayer/GUI"]
 anchor_left = 1.0
@@ -589,15 +679,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer/GUI"]
+layer = 2
+
+[node name="WhiteExplode" type="ColorRect" parent="CanvasLayer/GUI/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 853.071
+margin_top = 664.497
+margin_right = 853.071
+margin_bottom = 664.498
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExplotionAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GUI/CanvasLayer/WhiteExplode"]
+anims/Explode = SubResource( 38 )
+
 [connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/Pipe/Pipe-Arrow" method="_on_StatController_stat_changed"]
-[connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/StatsContainer/EnergyCount" method="_on_StatController_stat_changed"]
-[connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/StatsContainer/MoneyCount" method="_on_StatController_stat_changed"]
+[connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/Stats/EnergyCount" method="_on_StatController_stat_changed"]
+[connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/Stats/MoneyCount" method="_on_StatController_stat_changed"]
 [connection signal="timeout" from="StatController/EnergySpendTimer" to="StatController" method="_on_EnergySpendTimer_timeout"]
 [connection signal="timeout" from="StatController/FuelEffectTimer" to="StatController" method="_on_FuelEffectTimer_timeout"]
 [connection signal="earned_money" from="Props/SpaceRocket" to="StatController" method="_on_SpaceRocket_earned_money"]
 [connection signal="body_entered" from="Props/SpaceRocket/SpaceRocketEater" to="Props/SpaceRocket/SpaceRocketEater" method="_on_Eater_body_entered"]
 [connection signal="eated" from="Props/SpaceRocket/SpaceRocketEater" to="StatController" method="_on_SpaceRocketEater_eated"]
 [connection signal="eated" from="Props/SpaceRocket/SpaceRocketEater" to="Props/SpaceRocket" method="_on_SpaceRocketEater_eated"]
+[connection signal="finished_poped_beer" from="Props/Silo" to="StatController" method="_on_Silo_finished_poped_beer"]
+[connection signal="poped_beer" from="Props/Silo" to="StatController" method="_on_Silo_poped_beer"]
 [connection signal="body_entered" from="Props/Silo/SiloEater" to="Props/Silo/SiloEater" method="_on_Eater_body_entered"]
 [connection signal="eated" from="Props/Silo/SiloEater" to="Props/Silo" method="_on_SiloEater_eated"]
 [connection signal="timeout" from="Props/Silo/SiloTimer" to="Props/Silo" method="_on_SiloTimer_timeout"]
@@ -607,4 +717,7 @@ __meta__ = {
 [connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/B_Button" to="CameraController" method="_on_B_Button_button_down"]
 [connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/C_Button" to="CameraController" method="_on_C_Button_button_down"]
 [connection signal="button_down" from="CanvasLayer/GUI/TabMenu/MapRect/MapClose_Button" to="GUIController" method="_on_MapClose_Button_button_down"]
+[connection signal="button_down" from="CanvasLayer/GUI/TabMenu/Shop_Buttons/SankBuy_Button" to="StatController" method="_on_SankBuy_Button_button_down"]
+[connection signal="button_down" from="CanvasLayer/GUI/TabMenu/Shop_Buttons/FuelBuy_Button" to="StatController" method="_on_FuelBuy_Button_button_down"]
 [connection signal="button_down" from="CanvasLayer/GUI/Tab_Button" to="GUIController" method="_on_Tab_Button_button_down"]
+[connection signal="animation_finished" from="CanvasLayer/GUI/CanvasLayer/WhiteExplode/ExplotionAnimationPlayer" to="." method="_on_ExplotionAnimationPlayer_animation_finished"]
