@@ -2,6 +2,7 @@ extends StaticBody2D
 
 
 signal poped_beer()
+signal poped_beer_aaa()
 signal finished_poped_beer()
 
 export(Array) var _beers = []
@@ -19,6 +20,7 @@ func _pop_beer() -> void:
 	var new_beer: Node2D = _beers[4].instance()
 	new_beer.global_position = beer_spawn_node.global_position
 	bottles.add_child(new_beer)
+	emit_signal("poped_beer_aaa")
 
 
 func _on_SiloEater_eated(eatable_type):

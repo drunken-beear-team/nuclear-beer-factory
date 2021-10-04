@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://assets/sprites/environment/fueltank/bake-fire.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/environment/rooms/basement-bg.png" type="Texture" id=2]
@@ -39,6 +39,12 @@
 [ext_resource path="res://scripts/SpaceRocket.gd" type="Script" id=37]
 [ext_resource path="res://assets/sprites/gui/buttons.png" type="Texture" id=38]
 [ext_resource path="res://assets/fonts/master-font.tres" type="DynamicFont" id=39]
+[ext_resource path="res://scenes/SFX AudioStreamPlayer.gd" type="Script" id=40]
+[ext_resource path="res://assets/sounds/buy.wav" type="AudioStream" id=41]
+[ext_resource path="res://assets/sounds/explosion.wav" type="AudioStream" id=42]
+[ext_resource path="res://assets/sounds/bag in beer.wav" type="AudioStream" id=43]
+[ext_resource path="res://assets/sounds/bottle.wav" type="AudioStream" id=44]
+[ext_resource path="res://assets/sounds/launch.wav" type="AudioStream" id=45]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 23 )
@@ -258,6 +264,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 853.071, 664.497 ), Vector2( 0, 0 ) ]
 }
+tracks/3/type = "method"
+tracks/3/path = NodePath("../../../../SFX AudioStreamPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "play_explode"
+} ]
+}
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource( 14 )
@@ -292,8 +312,18 @@ position = Vector2( -193.841, 353.194 )
 [node name="SankSpawner" type="Node2D" parent="."]
 position = Vector2( -231.895, -33.2978 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -23.94
+autoplay = true
+
+[node name="SFX AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 40 )
+explode_sound = ExtResource( 42 )
+buy_sound = ExtResource( 41 )
+bottle_sound = ExtResource( 44 )
+launch_sound = ExtResource( 45 )
+bag_in_beer_sound = ExtResource( 43 )
 
 [node name="BG" type="Node2D" parent="."]
 
@@ -368,7 +398,7 @@ texture = ExtResource( 10 )
 
 [node name="FuelTank Fire" type="AnimatedSprite" parent="Props/FuelTank"]
 frames = SubResource( 11 )
-frame = 5
+frame = 1
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Props/FuelTank"]
@@ -429,7 +459,7 @@ _speed = 30.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="StaticColliders/Conveyor"]
 position = Vector2( -33.892, -4.84665 )
 frames = SubResource( 22 )
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticColliders/Conveyor"]
@@ -685,10 +715,10 @@ layer = 2
 [node name="WhiteExplode" type="ColorRect" parent="CanvasLayer/GUI/CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 853.071
-margin_top = 664.497
-margin_right = 853.071
-margin_bottom = 664.498
+margin_left = 568.714
+margin_top = 442.998
+margin_right = 568.714
+margin_bottom = 442.998
 color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -697,17 +727,21 @@ __meta__ = {
 [node name="ExplotionAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GUI/CanvasLayer/WhiteExplode"]
 anims/Explode = SubResource( 38 )
 
+[connection signal="stat_changed" from="StatController" to="SFX AudioStreamPlayer" method="_on_StatController_stat_changed"]
 [connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/Pipe/Pipe-Arrow" method="_on_StatController_stat_changed"]
 [connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/Stats/EnergyCount" method="_on_StatController_stat_changed"]
 [connection signal="stat_changed" from="StatController" to="CanvasLayer/GUI/TabMenu/Stats/MoneyCount" method="_on_StatController_stat_changed"]
 [connection signal="timeout" from="StatController/EnergySpendTimer" to="StatController" method="_on_EnergySpendTimer_timeout"]
 [connection signal="timeout" from="StatController/FuelEffectTimer" to="StatController" method="_on_FuelEffectTimer_timeout"]
 [connection signal="earned_money" from="Props/SpaceRocket" to="StatController" method="_on_SpaceRocket_earned_money"]
+[connection signal="earned_money" from="Props/SpaceRocket" to="SFX AudioStreamPlayer" method="_on_SpaceRocket_earned_money"]
 [connection signal="body_entered" from="Props/SpaceRocket/SpaceRocketEater" to="Props/SpaceRocket/SpaceRocketEater" method="_on_Eater_body_entered"]
 [connection signal="eated" from="Props/SpaceRocket/SpaceRocketEater" to="StatController" method="_on_SpaceRocketEater_eated"]
 [connection signal="eated" from="Props/SpaceRocket/SpaceRocketEater" to="Props/SpaceRocket" method="_on_SpaceRocketEater_eated"]
 [connection signal="finished_poped_beer" from="Props/Silo" to="StatController" method="_on_Silo_finished_poped_beer"]
 [connection signal="poped_beer" from="Props/Silo" to="StatController" method="_on_Silo_poped_beer"]
+[connection signal="poped_beer" from="Props/Silo" to="SFX AudioStreamPlayer" method="_on_Silo_poped_beer"]
+[connection signal="poped_beer_aaa" from="Props/Silo" to="SFX AudioStreamPlayer" method="_on_Silo_poped_beer_aaa"]
 [connection signal="body_entered" from="Props/Silo/SiloEater" to="Props/Silo/SiloEater" method="_on_Eater_body_entered"]
 [connection signal="eated" from="Props/Silo/SiloEater" to="Props/Silo" method="_on_SiloEater_eated"]
 [connection signal="timeout" from="Props/Silo/SiloTimer" to="Props/Silo" method="_on_SiloTimer_timeout"]

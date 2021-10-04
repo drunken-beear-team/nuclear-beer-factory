@@ -27,4 +27,4 @@ const V_FUEL_PRICE = 1  #
 const V_SANK_PRICE = 1  #
 
 # Cargo
-const V_ROCKET_CAP = 8
+const V_ROCKET_CAP = 7
