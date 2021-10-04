@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/sprites/bake-fire.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/bake-fg.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/bake-bg.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/environment/fueltank/bake-fire.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/environment/fueltank/bake-fg.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/environment/fueltank/bake-bg.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -43,7 +43,7 @@ texture = ExtResource( 4 )
 
 [node name="FT Fire" type="AnimatedSprite" parent="."]
 frames = SubResource( 7 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="FT FG" type="Sprite" parent="."]

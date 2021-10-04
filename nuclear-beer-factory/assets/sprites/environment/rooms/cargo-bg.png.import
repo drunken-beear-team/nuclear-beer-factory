@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cargo-bg.png-6295a3aac3b2ad2316707fe179c108b7.stex"
+path="res://.import/cargo-bg.png-92dd94627292847066fa05aa5a02dd4c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cargo-bg.png"
-dest_files=[ "res://.import/cargo-bg.png-6295a3aac3b2ad2316707fe179c108b7.stex" ]
+source_file="res://assets/sprites/environment/rooms/cargo-bg.png"
+dest_files=[ "res://.import/cargo-bg.png-92dd94627292847066fa05aa5a02dd4c.stex" ]
 
 [params]
 

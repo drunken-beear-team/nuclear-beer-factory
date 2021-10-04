@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/space-rocket.png-4e164336db241d78e9d93711de54b1ea.stex"
+path="res://.import/silo-empty.png-a8fad250178851f84f4cd572bb91c9a0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/space-rocket.png"
-dest_files=[ "res://.import/space-rocket.png-4e164336db241d78e9d93711de54b1ea.stex" ]
+source_file="res://assets/sprites/environment/silo/silo-empty.png"
+dest_files=[ "res://.import/silo-empty.png-a8fad250178851f84f4cd572bb91c9a0.stex" ]
 
 [params]
 

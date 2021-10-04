@@ -1,54 +1,54 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://assets/sprites/bake-fire.png" type="Texture" id=1]
-[ext_resource path="res://assets/sprites/basement-bg.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/environment/fueltank/bake-fire.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/environment/rooms/basement-bg.png" type="Texture" id=2]
 [ext_resource path="res://prefabs/Controllers/CameraController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prefabs/Controllers/GameController.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/sprites/cargo-bg.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/shop.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/bake-fg.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/environment/silo/silo-empty.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/environment/rooms/cargo-bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/environment/rooms/craftroom-bg.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/environment/fueltank/bake-fg.png" type="Texture" id=8]
 [ext_resource path="res://prefabs/GUI/GUI.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/sprites/bake-bg.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/tank-empty.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/tank-eater.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/environment/fueltank/bake-bg.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/environment/silo/silo-eater.png" type="Texture" id=13]
 [ext_resource path="res://scripts/Gameplay.gd" type="Script" id=14]
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 137, 135 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
 region = Rect2( 137, 0, 137, 135 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
 region = Rect2( 274, 0, 137, 135 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
 region = Rect2( 411, 0, 137, 135 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
 region = Rect2( 548, 0, 137, 135 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 685, 0, 137, 135 )
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 15.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 60.9629, 17.1825 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 16.2016, 15.7127 )
 
 [node name="Gameplay" type="Node2D"]
@@ -56,7 +56,6 @@ script = ExtResource( 14 )
 
 [node name="GameController" parent="." instance=ExtResource( 4 )]
 position = Vector2( 4.45447, 8.90897 )
-_fuel_prefab = null
 
 [node name="CameraController" parent="." instance=ExtResource( 3 )]
 _bg_arr = [ null, null, null ]
@@ -82,7 +81,7 @@ polygon = PoolVector2Array( 23.0914, 160.643, 22.177, 128.88, 319.965, 129.254, 
 position = Vector2( 135.279, 46.3533 )
 
 [node name="Sprite" type="Sprite" parent="Environment/Rooms/Shop/BeerTank"]
-texture = ExtResource( 12 )
+texture = ExtResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Shop/BeerTank"]
 polygon = PoolVector2Array( -40.4407, -77.2463, 30.3543, -76.8717, 29.6988, -6.26401, 45.6183, -6.07672, 49.1768, -2.05002, 49.4577, 11.9966, 36.4412, 11.622, 36.4412, 5.72244, 29.3014, 5.56383, 29.1369, 73.0526, 35.9085, 73.2868, 36.1445, 82.2536, -46.9164, 81.7817, -46.9958, 72.0225, -38.8935, 72.107, -39.5144, 48.4563, -72.9401, 47.8256, -82.2788, 38.3967, -82.3671, 3.21421, -113.988, -29.5135, -109.119, -29.3262, -77.8773, -1.55626, -49.8418, -29.2326, -44.5978, -29.3262, -72.4038, 2.02167, -72.6538, 32.8967, -65.4038, 40.2717, -39.9349, 40.0473 )
@@ -105,7 +104,8 @@ collision_mask = 3
 texture = ExtResource( 10 )
 
 [node name="FT Fire" type="AnimatedSprite" parent="Environment/Rooms/Basement/FuelTank"]
-frames = SubResource( 9 )
+frames = SubResource( 7 )
+frame = 4
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Environment/Rooms/Basement/FuelTank"]
@@ -127,11 +127,11 @@ polygon = PoolVector2Array( 42.9872, 90.0779, 233.455, 89.5549, 236.523, 92.7404
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Rooms/Cargo"]
 position = Vector2( -260.415, 144.464 )
-shape = SubResource( 10 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Environment/Rooms/Cargo"]
 position = Vector2( -117.358, 143.277 )
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="Fuels" type="Node2D" parent="Environment"]
 
@@ -146,6 +146,7 @@ position = Vector2( 161.485, 367.482 )
 texture = ExtResource( 8 )
 
 [node name="GUI" parent="." instance=ExtResource( 9 )]
+layer = -1
 
 [connection signal="stat_changed" from="." to="GUI" method="_on_stat_changed"]
 [connection signal="room_switched" from="GUI" to="CameraController" method="_on_GUI_room_switched"]

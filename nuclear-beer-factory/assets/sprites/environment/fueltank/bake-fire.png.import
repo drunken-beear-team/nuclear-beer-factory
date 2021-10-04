@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bake-fg.png-70767be2e113eb68c5dce94cc8c3c492.stex"
+path="res://.import/bake-fire.png-d59afc59c737ac065afd69cae0e8ea53.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bake-fg.png"
-dest_files=[ "res://.import/bake-fg.png-70767be2e113eb68c5dce94cc8c3c492.stex" ]
+source_file="res://assets/sprites/environment/fueltank/bake-fire.png"
+dest_files=[ "res://.import/bake-fire.png-d59afc59c737ac065afd69cae0e8ea53.stex" ]
 
 [params]
 

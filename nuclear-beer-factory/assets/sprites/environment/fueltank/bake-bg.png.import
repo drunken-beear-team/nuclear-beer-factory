@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/menu-bg.png-472af0c9343dc6420440a8526888da81.stex"
+path="res://.import/bake-bg.png-bee7a1583368a0ce2b288155c78d3471.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/menu-bg.png"
-dest_files=[ "res://.import/menu-bg.png-472af0c9343dc6420440a8526888da81.stex" ]
+source_file="res://assets/sprites/environment/fueltank/bake-bg.png"
+dest_files=[ "res://.import/bake-bg.png-bee7a1583368a0ce2b288155c78d3471.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

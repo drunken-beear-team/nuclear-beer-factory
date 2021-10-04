@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bake-fire.png-0eef88287baaa1277a78f30a32c3d7bf.stex"
+path="res://.import/silo-eater.png-6eeb2e86ee7edc3e969bec3b158250d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/bake-fire.png"
-dest_files=[ "res://.import/bake-fire.png-0eef88287baaa1277a78f30a32c3d7bf.stex" ]
+source_file="res://assets/sprites/environment/silo/silo-eater.png"
+dest_files=[ "res://.import/silo-eater.png-6eeb2e86ee7edc3e969bec3b158250d1.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tank-eater.png-ecdf0c0c89e8e15e40c92ebf6cbd4305.stex"
+path="res://.import/space-rocket.png-ccbeafc8f07934d0a9c49f84df2393bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tank-eater.png"
-dest_files=[ "res://.import/tank-eater.png-ecdf0c0c89e8e15e40c92ebf6cbd4305.stex" ]
+source_file="res://assets/sprites/environment/space-rocket.png"
+dest_files=[ "res://.import/space-rocket.png-ccbeafc8f07934d0a9c49f84df2393bf.stex" ]
 
 [params]
 

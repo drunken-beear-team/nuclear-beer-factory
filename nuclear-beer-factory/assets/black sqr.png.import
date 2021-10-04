@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shop.png-229728a5645e32272515d60ab2ead628.stex"
+path="res://.import/black sqr.png-66c67aa0ebee040b34fe870978959e9d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/shop.png"
-dest_files=[ "res://.import/shop.png-229728a5645e32272515d60ab2ead628.stex" ]
+source_file="res://assets/black sqr.png"
+dest_files=[ "res://.import/black sqr.png-66c67aa0ebee040b34fe870978959e9d.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
