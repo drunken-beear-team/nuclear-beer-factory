@@ -179,7 +179,6 @@ atlas = ExtResource( 20 )
 region = Rect2( 174, 88, 281, 167 )
 
 [sub_resource type="StreamTexture" id=26]
-load_path = "res://.import/map-btns.png-f3a7d6423759c0d2f16a388d328eda9a.stex"
 
 [sub_resource type="AtlasTexture" id=27]
 atlas = SubResource( 26 )
@@ -472,13 +471,9 @@ shape = SubResource( 23 )
 
 [node name="Fuel" parent="Objects/Fuels" instance=ExtResource( 11 )]
 position = Vector2( -152.392, 365.085 )
-input_pickable = true
-collision_layer = 3
 
 [node name="Fuel2" parent="Objects/Fuels" instance=ExtResource( 11 )]
 position = Vector2( -108.789, 371.318 )
-input_pickable = true
-collision_layer = 3
 
 [node name="Bottles" type="Node2D" parent="Objects"]
 
@@ -486,13 +481,9 @@ collision_layer = 3
 
 [node name="Sank" parent="Objects/Sanks" instance=ExtResource( 25 )]
 position = Vector2( -207.432, 106.262 )
-input_pickable = true
-collision_layer = 3
 
 [node name="Sank2" parent="Objects/Sanks" instance=ExtResource( 25 )]
 position = Vector2( -164.328, 105.729 )
-input_pickable = true
-collision_layer = 3
 
 [node name="FG" type="Node2D" parent="."]
 
@@ -683,8 +674,8 @@ margin_left = 81.3499
 margin_top = 8.77914
 margin_right = 185.35
 margin_bottom = 24.7791
-custom_fonts/font = ExtResource( 39 )
 custom_colors/font_color = Color( 0.788235, 0.796078, 0.866667, 1 )
+custom_fonts/font = ExtResource( 39 )
 text = "9999"
 _template_string = "%s"
 
@@ -693,8 +684,8 @@ margin_left = 18.5523
 margin_top = 8.54602
 margin_right = 122.552
 margin_bottom = 24.546
-custom_fonts/font = ExtResource( 39 )
 custom_colors/font_color = Color( 0.788235, 0.796078, 0.866667, 1 )
+custom_fonts/font = ExtResource( 39 )
 text = "9999"
 _template_string = "%s"
 
